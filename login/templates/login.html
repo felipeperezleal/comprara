@@ -9,22 +9,9 @@
     <title>Iniciar Sesión</title>
 </head>
 <body style="background-color:#f7e8d7;">
-    <!-- Navbar -->
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="../../resources/logo.png" alt="Comprara!" width="30" height="24">
-        </a>
-        <form class="d-flex justify-content-between" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar un producto..." aria-label="Search">
-          <button class="btn btn-primary" style="background-color:#644321;" type="submit">Buscar</button>
-        </form>
-        <a class="nav-link" href="#" style="color: #644321; font-weight:bold;">Ingresar</a>
-      </div>
-    </nav>
-    <!-- Navbar -->
+    {% include "base.html" %}
 
-    <button type="button" class="btn btn-link" style="color: #644321; font-weight:bold;">Inicio</button>
+    <button type="button" class="btn btn-link" style="color: #644321; font-weight:bold; font-size: x-large;">Inicio</button>
 
     <!-- login -->
     <form class="d-flex flex-column mb-3 align-items-center position-absolute top-50 start-50 translate-middle">
