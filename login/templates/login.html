@@ -10,33 +10,24 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Comprara!</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand">Comprara!</a>
+        <form class="d-flex justify-content-between" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar un producto..." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Log In
           </button>
-          <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar un producto..." aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
-              </li>
-              <li class="dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Log In
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Ingresar</a></li>
-                  <li><a class="dropdown-item" href="#">Registrarme</a></li>
-                </ul>
-            </li>
-            </ul>
-          </div>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Ingresar</a></li>
+            <li><a class="dropdown-item" href="#">Registrarme</a></li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
     <!-- Navbar -->
 </body>
 </html>
