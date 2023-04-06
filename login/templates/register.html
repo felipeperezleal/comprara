@@ -18,13 +18,13 @@
       {% csrf_token %}
       <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 10%;">Registro</p>
       <div class="mb-3">
-        <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;">
+        <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
       </div>
       <div class="mb-3">
-        <input type="password" class="form-control" placeholder="Contraseña" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;">
+        <input type="password" class="form-control" placeholder="Contraseña" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
       </div>
       <div class="mb-3">
-        <input type="password" class="form-control" placeholder="Confirmar contraseña" name="password" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;">
+        <input type="password" class="form-control" placeholder="Confirmar contraseña" name="password" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
       </div>
       <button type="submit" class="btn btn-primary" style="background-color:#644321; padding: 3%;">Registrarme</button>
       <p class="fs-5" style="color: #644321; font-weight:bold; padding-top: 10%;">¿Ya tienes una cuenta? <a href="{% url 'login' %}" style="color:#d79f54;">Inicia sesión aquí</a></p>
