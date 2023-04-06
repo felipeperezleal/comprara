@@ -11,23 +11,23 @@
 <body style="background-color:#f7e8d7;">
     {% include "base.html" %}
 
-    <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large;">Inicio</a>
+    <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%;">Inicio</a>
 
     <!-- login -->
-    <form class="d-flex flex-column mb-3 align-items-center position-absolute top-50 start-50 translate-middle" action="{% url 'complete_registration' %}" method="POST">
+    <form class="d-flex flex-column mb-3 align-items-center position-absolute top-50 start-50 translate-middle" action="{% url 'complete_registration' %}" method="POST" style="padding: 10%;">
       {% csrf_token %}
-      <p class="fs-1" style="color: #644321; font-weight:bolder;">Registrarme</p>
+      <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 10%;">Registro</p>
       <div class="mb-3">
-        <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" style="background-color: #f7e8d7; border:2px solid #644321;">
+        <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;">
       </div>
       <div class="mb-3">
-        <input type="password" class="form-control" placeholder="Contraseña" style="background-color: #f7e8d7; border:2px solid #644321;">
+        <input type="password" class="form-control" placeholder="Contraseña" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;">
       </div>
       <div class="mb-3">
-        <input type="password" class="form-control" placeholder="Confirmar contraseña" name="password" style="background-color: #f7e8d7; border:2px solid #644321;">
+        <input type="password" class="form-control" placeholder="Confirmar contraseña" name="password" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;">
       </div>
-      <button type="submit" class="btn btn-primary" style="background-color:#644321;">Registrarme</button>
-      <p class="fs-4" style="color: #644321; font-weight:bold;">¿Ya tienes una cuenta? <a href="{% url 'login' %}" style="color:#d79f54;">Inicia sesión aquí</a></p>
+      <button type="submit" class="btn btn-primary" style="background-color:#644321; padding: 3%;">Registrarme</button>
+      <p class="fs-5" style="color: #644321; font-weight:bold; padding-top: 10%;">¿Ya tienes una cuenta? <a href="{% url 'login' %}" style="color:#d79f54;">Inicia sesión aquí</a></p>
     </form>
     <!-- login -->
 </body>

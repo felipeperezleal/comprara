@@ -13,14 +13,14 @@
     <!-- Navbar -->
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'home' %}">
           <img src="{% static 'logo.png' %}" alt="Comprara!" style="height: 80px; width: auto;">
         </a>
         <form class="d-flex justify-content-between" role="search">
           <input class="form-control me-2" type="search" placeholder="Buscar un producto..." aria-label="Search" style="width: 1000px;">
-          <button class="btn btn-primary" style="background-color:#644321;" type="submit">Buscar</button>
+          <a class="nav-link" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding-right: 50px;"><img src="{% static 'search.png' %}" alt="Profile" style="height: 50px; width: auto; padding-right: 5px;"/></a>
         </form>
-        <a class="nav-link" href="{% url 'login' %}" style="color: #644321; font-weight:bold; font-size: x-large;"><img src="{% static 'profile.png' %}" alt="Profile" style="height: 50px; width: auto;"/>Ingresar</a>
+        <a class="nav-link" href="{% url 'login' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding-right: 50px;"><img src="{% static 'profile.png' %}" alt="Profile" style="height: 50px; width: auto; padding-right: 5px;"/>Ingresar</a>
       </div>
     </nav>
     <!-- Navbar -->
