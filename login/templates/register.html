@@ -11,7 +11,7 @@
 <body style="background-color:#f7e8d7;">
     {% include "base.html" %}
 
-    <button type="button" class="btn btn-link" style="color: #644321; font-weight:bold; font-size: x-large;">Inicio</button>
+    <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large;">Inicio</a>
 
     <!-- login -->
     <form class="d-flex flex-column mb-3 align-items-center position-absolute top-50 start-50 translate-middle" action="{% url 'complete_registration' %}" method="POST">
