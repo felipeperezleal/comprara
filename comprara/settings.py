@@ -83,6 +83,7 @@ DATABASES = {
         "NAME": "compraraDB",
         "USER": "postgres",
         "PASSWORD": "postgres",
+        #admin123
         "HOST": "localhost",
         "PORT": "5432",
     }
