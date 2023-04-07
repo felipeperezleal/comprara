@@ -14,14 +14,14 @@
     <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%;"> Inicio</a>
 
     <!-- login -->
-    <form class="d-flex flex-column mb-3 align-items-center position-absolute top-50 start-50 translate-middle">
+    <form class="d-flex flex-column mb-3 align-items-center position-absolute top-50 start-50 translate-middle" action="{% url 'complete_login' %}" method="POST" style="padding: 10%;">
       {% csrf_token %}
       <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 10%;">Iniciar Sesión</p>
       <div class="mb-3">
-        <input type="email" class="form-control" placeholder="Correo Electrónico" id="email" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
+        <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
       </div>
       <div class="mb-3">
-        <input type="password" class="form-control" placeholder="Contraseña" id="password" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
+        <input type="password" class="form-control" placeholder="Contraseña" name="password" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
       </div>
       {% if messages %}
       <ul class="messages">
