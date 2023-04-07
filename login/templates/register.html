@@ -13,7 +13,7 @@
 
     <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%;">Inicio</a>
 
-    <!-- login -->
+    <!-- register -->
     <form class="d-flex flex-column mb-3 align-items-center position-absolute top-50 start-50 translate-middle" action="{% url 'complete_registration' %}" method="POST" style="padding: 10%;">
       {% csrf_token %}
       <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 10%;">Registro</p>
@@ -36,6 +36,6 @@
       <button type="submit" class="btn btn-primary" style="background-color:#644321; padding: 3%;">Registrarme</button>
       <p class="fs-5" style="color: #644321; font-weight:bold; padding-top: 10%;">¿Ya tienes una cuenta? <a href="{% url 'login' %}" style="color:#d79f54;">Inicia sesión aquí</a></p>
     </form>
-    <!-- login -->
+    <!-- register -->
 </body>
 </html>
