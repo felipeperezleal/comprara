@@ -10,7 +10,7 @@ def login(request):
 
 def complete_login(request):
     if request.method == 'POST':
-        username = request.POST.get('email')
+        username = request.POST.get('username')
         password = request.POST.get('password')
 
         # Si el usuario existe en la base de datos, login
@@ -21,18 +21,18 @@ def complete_login(request):
             messages.error(request, 'Este correo no está registrado')
 
         # Autenticar usuario
-        user = authenticate(request, user=username, password=password)
+        user = authenticate(request, username=username, password=password)
         # Debug msg
         messages.info(request, 'Tried to authenticate with Username = {} Password: {}. user variable is {}'.format(username, password, user))
 
         # Si ha sido autenticado, log in. De lo contrario, error
-        if user != None:
+        if user is not None:
             login(request, user)
             # Debug msg
             messages.success(request, 'Login successful')
             return redirect('../../')
         else:
-            messages.error(request, 'Email o contraseña erróneos')
+            messages.error(request, 'Usuario o contraseña erróneos')
             return render(request, 'login.html')
 
 def register(request):
@@ -40,9 +40,10 @@ def register(request):
 
 def complete_registration(request):
     if request.POST.get('password') == request.POST.get('passwordConfirm'):
-        user = User(username = request.POST['email'], email=request.POST['email'], password=request.POST['password'])
+        user = User(username = request.POST['username'], password = request.POST['password'])
+        user.set_password(request.POST['password'])
         user.save()
-        return redirect('../../login/')
+        return redirect('home')
     else:
         messages.error(request, 'Las contraseñas no coinciden')
         return render(request, 'register.html')

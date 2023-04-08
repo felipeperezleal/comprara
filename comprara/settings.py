@@ -73,10 +73,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'comprara.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Default DB
+"""
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "mydatabase",
+    }
+}
+"""
+
+# PostgreSQL DB
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -89,6 +99,10 @@ DATABASES = {
     }
 }
 
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
