@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
 
-def login(request):
+def login_view(request):
     return render(request, 'login.html')
 
 def complete_login(request):
@@ -48,3 +48,7 @@ def complete_registration(request):
     else:
         messages.error(request, 'Las contraseñas no coinciden')
         return render(request, 'register.html')
+
+def logout_request(request):
+    logout(request)    
+    return redirect('../../')
