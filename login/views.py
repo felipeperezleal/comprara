@@ -19,9 +19,10 @@ def complete_login(request):
         # Si no está, error
         except:
             messages.error(request, 'Este correo no está registrado')
-
+        
         # Autenticar usuario
         user = authenticate(request, username=username, password=password)
+        
         # Debug msg
         messages.info(request, 'Tried to authenticate with Username = {} Password: {}. user variable is {}'.format(username, password, user))
 
