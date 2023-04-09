@@ -18,19 +18,14 @@ def complete_login(request):
             user = User.objects.get(username=username)
         # Si no está, error
         except:
-            messages.error(request, 'Este correo no está registrado')
+            messages.error(request, 'Este usuario no existe')
         
         # Autenticar usuario
         user = authenticate(request, username=username, password=password)
-        
-        # Debug msg
-        messages.info(request, 'Tried to authenticate with Username = {} Password: {}. user variable is {}'.format(username, password, user))
 
         # Si ha sido autenticado, log in. De lo contrario, error
         if user is not None:
             login(request, user)
-            # Debug msg
-            messages.success(request, 'Login successful')
             return redirect('../../')
         else:
             messages.error(request, 'Usuario o contraseña erróneos')
