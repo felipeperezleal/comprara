@@ -11,8 +11,10 @@
 <body style="background-color:#f7e8d7;">
     {% include "base.html" %}
 
-    <!-- Debug -->
-    <h2>Search.html</h2>
-    
+    <!-- Mostramos los títulos de artículos -->
+    {% for title in product_titles %}
+      <p></p>{{title}}</p>
+    {% endfor %}
+
 </body>
 </html>

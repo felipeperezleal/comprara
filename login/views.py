@@ -12,13 +12,15 @@ def search(request):
     url = 'https://listado.mercadolibre.com.co/' + search_string.replace(' ', '-')
     r = requests.get(url)
     soup = bs(r.content)
-    item_titles = soup.find_all('h2', {'class':"ui-search-item__title shops__item-title"})
+    product_titles = soup.findAll('h2', {'class':"ui-search-item__title shops__item-title"})
 
-    # Debug, imprime en consola los títulos de los artículos que son resultado de la búsqueda
-    for title in item_titles:
-        print(title)
-    
-    return render(request, 'search.html')
+    # Extraemos el contenido de los tags para pasarlo como contexto
+    i = 0
+    for title in product_titles:
+        product_titles[i] = product_titles[i].text
+        i = i + 1
+
+    return render(request, 'search.html', {'product_titles': product_titles})
 
 
 def login_view(request):
