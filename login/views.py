@@ -4,6 +4,22 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 # Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
+from bs4 import BeautifulSoup as bs
+import requests
+
+def search(request):
+    search_string = request.POST.get('search_string')
+    url = 'https://listado.mercadolibre.com.co/' + search_string.replace(' ', '-')
+    r = requests.get(url)
+    soup = bs(r.content)
+    item_titles = soup.find_all('h2', {'class':"ui-search-item__title shops__item-title"})
+
+    # Debug, imprime en consola los títulos de los artículos que son resultado de la búsqueda
+    for title in item_titles:
+        print(title)
+    
+    return render(request, 'search.html')
+
 
 def login_view(request):
     return render(request, 'login.html')
