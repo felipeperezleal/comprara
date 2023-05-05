@@ -12,16 +12,18 @@ def search(request):
     url = 'https://listado.mercadolibre.com.co/' + search_string.replace(' ', '-')
     r = requests.get(url)
     soup = bs(r.content)
-    product_titles = soup.findAll('h2', {'class':"ui-search-item__title shops__item-title"})
 
-    # Extraemos el contenido de los tags para pasarlo como contexto
+    product_titles = soup.findAll('h2', {'class':"ui-search-item__title shops__item-title"})
+    product_images = soup.findAll('img', {'class':"ui-search-result-image__element shops__image-element"})
+    product_prices = soup.findAll('span', {'class':"price-tag-fraction"})
+        
+    products = []
     i = 0
     for title in product_titles:
-        product_titles[i] = product_titles[i].text
+        products.append([product_titles[i].text, product_prices[i].text])
         i = i + 1
 
-    return render(request, 'search.html', {'product_titles': product_titles})
-
+    return render(request, 'search.html', {'products':products})
 
 def login_view(request):
     return render(request, 'login.html')

@@ -12,8 +12,15 @@
     {% include "base.html" %}
 
     <!-- Mostramos los títulos de artículos -->
-    {% for title in product_titles %}
-      <p></p>{{title}}</p>
+    {% for product in products %}
+      <div>
+        <p>
+          {{ product.0 }}
+        </p>
+        <p>
+          $ {{ product.1 }}
+        </p>
+      </div>
     {% endfor %}
 
 </body>
