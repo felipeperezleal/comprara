@@ -59,7 +59,7 @@ def complete_registration(request):
         user = User(username = request.POST['username'], password = request.POST['password'])
         user.set_password(request.POST['password'])
         user.save()
-        return redirect('home')
+        return redirect('login')
     else:
         messages.error(request, 'Las contraseñas no coinciden')
         return render(request, 'register.html')
