@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +9,14 @@
 </head>
 <body style="background-color:#f7e8d7; padding-top: 100px;">
     {% include "base.html" %}
-    <div class="container text-center" style="padding: 2%; position: relative;">
-        <div class="child" >
-            <h2>Categorías</h2>
-            <h3>¿No sabes qué comprar? ¿Por qué no comenzar buscando alguna categoría?</h3>
-            <div class="row" style="margin: 30px;">
+    <div class="container text-center" style="padding: 1%; position: relative;">
+        <div class="child">
+            <h2 style="color: #644321; font-weight: bold;">Categorías</h2>
+            <h3 style="color: #9d8b78; font-weight: lighter;">¿No sabes qué comprar? ¿Por qué no comenzar buscando alguna categoría?</h3>
+            <div class="row" style="margin: 20px;">
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
-                        <img src="..." class="img-thumbnail" alt="...">
+                        <img src="{% static 'ropa.avif' %}" class="img" alt="ropa" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
                     <div class="row" style="margin: 10px;">
                         <button type="submit" class="btn" style="background-color:#644321; color: white;">Ropa</button>
@@ -23,7 +24,7 @@
                 </div>
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
-                        <img src="..." class="img-thumbnail" alt="...">
+                        <img src="{% static 'muebles.avif' %}" class="img" alt="muebles " style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
                     <div class="row" style="margin: 10px;">
                         <button type="submit" class="btn" style="background-color:#644321; color: white;">Muebles</button>
@@ -31,17 +32,17 @@
                 </div>
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
-                        <img src="..." class="img-thumbnail" alt="...">
+                        <img src="{% static 'electrodomesticos.avif' %}" class="img" alt="electrodomesticos" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
                     <div class="row" style="margin: 10px;">
                         <button type="submit" class="btn" style="background-color:#644321; color: white;">Electrodomésticos</button>
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin: 30px;">
+            <div class="row" style="margin: 20px;">
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
-                        <img src="..." class="img-thumbnail" alt="...">
+                        <img src="{% static 'deportes.jpg' %}" class="img" alt="deportes" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
                     <div class="row" style="margin: 10px;">
                         <button type="submit" class="btn" style="background-color:#644321; color: white;">Deportes</button>
@@ -49,7 +50,7 @@
                 </div>
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
-                        <img src="..." class="img-thumbnail" alt="...">
+                        <img src="{% static 'tecnologia.avif' %}" class="img" alt="tecnologia" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
                     <div class="row" style="margin: 10px;">
                         <button type="submit" class="btn" style="background-color:#644321; color: white;">Tecnología</button>
@@ -57,7 +58,7 @@
                 </div>
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
-                        <img src="..." class="img-thumbnail" alt="...">
+                        <img src="{% static 'hogar.avif' %}" class="img" alt="hogar" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
                     <div class="row" style="margin: 10px;">
                         <button type="submit" class="btn" style="background-color:#644321; color: white;">Productos para el hogar</button>
