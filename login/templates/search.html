@@ -11,32 +11,49 @@
 <body style="background-color:#f7e8d7; padding-top: 100px;">
   {% include "base.html" %}
   <!-- Mostramos los títulos de artículos -->
-  {% for product in products %}
-  <div class="d-flex justify-content-between">
-    <div class="d-flex align-items-center" style="padding: 2%; margin-left: 20%;">
-      <div>
-        <div class="flex-shrink-0" style="background-color: #c76650; height: 160px; width: 160px;"></div>
-        <!-- <img src="..." class="card-img-top" alt={{ product.0 }}> -->
-      </div>
-      <div>
-        <div class="flex-grow-1 ms-3">
-          <p style="color: #c76650; font-weight: bold;">
-            {{ product.0 }}
-          </p>
-          <p style="color: #644321; font-weight: bold;">
-            $ {{ product.1 }}
-          </p>
-        </div>  
-      </div>
-    </div>
-    <div style="padding: 2%;">
-      <div class="d-flex flex-column gap-3">
-        <button type="submit" class="btn"  style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;">Ir a la tienda</button>
-        <button type="submit" class="btn"  style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;">Guardar</button>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3" style="padding: 0.1%;  border:#644321 solid; border-radius: 20px; margin: 0.5%; width: 15%;">
 
+      </div>
+      <div class="col-md-10" >
+      {% for product in products %}
+        <div class="d-flex row" style="white-space: nowrap;">
+          <div class="d-flex align-items-center" style="padding: 0.1%;  border:#644321 solid ; border-radius: 20px; margin: 0.5%;">
+            <div class="container">
+              <div class="row"  style="height: max-content; width: max-content;">
+                <div class="col">
+                  <img src="{{ product.2 }}" class="card-img-top" alt={{ product.0 }} height="160px">
+                </div>
+                <div class="col d-flex align-items-center">
+                  <div>
+                    <p style="color: #c76650; font-weight: bold;">
+                      {{ product.0 }}
+                    </p>
+                    <p style="color: #644321; font-weight: bold;">
+                      $ {{ product.1 }}
+                    </p>
+                  </div>  
+                </div>
+              </div>
+            </div>
+            <div style="padding: 2%; width: auto;">
+              <div class="d-flex flex-column gap-3">
+                <form action="{{ product.3 }}">
+                  <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" formtarget="_blank">
+                    Ir a la tienda
+                  </button>
+                </form>
+                <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;">
+                  Guardar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>  
 </body>
 </html>

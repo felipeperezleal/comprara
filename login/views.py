@@ -5,25 +5,81 @@ from django.contrib.auth.models import User
 # Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
 from bs4 import BeautifulSoup as bs
-import requests
+import requests, json
 
 def search(request):
-    search_string = request.POST.get('search_string')
-    url = 'https://listado.mercadolibre.com.co/' + search_string.replace(' ', '-')
-    r = requests.get(url)
-    soup = bs(r.content)
-
-    product_titles = soup.findAll('h2', {'class':"ui-search-item__title shops__item-title"})
-    product_images = soup.findAll('img', {'class':"ui-search-result-image__element shops__image-element"})
-    product_prices = soup.findAll('span', {'class':"price-tag-fraction"})
-        
+    search_string = request.POST.get('search_string').replace(' ', '%20')
     products = []
-    i = 0
-    for title in product_titles:
-        products.append([product_titles[i].text, product_prices[i].text])
-        i = i + 1
+    try:
+        products.extend(exito_sc(search_string))
+    except:
+        pass
+    try:
+        products.extend(metro_sc(search_string))
+    except:
+        pass
+    try:
+        products.extend(jumbo_sc(search_string))
+    except:
+        pass
+    try:
+        products.extend(olimpica_sc(search_string))
+    except:
+        pass
 
     return render(request, 'search.html', {'products':products})
+
+def metro_sc(query):
+    url = f'https://www.tiendasmetro.co/{query}?_q={query}&map=ft'
+    #Replace User-Agent header (this protects Scraping by getting banned from the website)
+    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
+    print(url)
+    soup = bs(r.content, 'html.parser')
+    script = soup.findAll('script', {'type':'application/ld+json'})
+    data = json.loads(script[2].text)
+    products = []
+    for product in data['itemListElement']:
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id']])
+    return products
+
+def exito_sc(query):
+    url = f'https://www.exito.com/{query}?_q={query}&map=ft'
+    #Replace User-Agent header (this protects Scraping by getting banned from the website)
+    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
+    print(url)
+    soup = bs(r.content, 'html.parser')
+    script = soup.findAll('script', {'type':'application/ld+json'})
+    data = json.loads(script[2].text)
+    products = []
+    for product in data['itemListElement']:
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id']])
+    return products
+
+def jumbo_sc(query):
+    url = f'https://www.tiendasjumbo.co/{query}?_q={query}&map=ft'
+    #Replace User-Agent header (this protects Scraping by getting banned from the website)
+    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
+    print(url)
+    soup = bs(r.content, 'html.parser')
+    script = soup.findAll('script', {'type':'application/ld+json'})
+    data = json.loads(script[2].text)
+    products = []
+    for product in data['itemListElement']:
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id']])
+    return products
+
+def olimpica_sc(query):
+    url = f'https://www.olimpica.com/{query}?_q={query}&map=ft'
+    #Replace User-Agent header (this protects Scraping by getting banned from the website)
+    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
+    print(url)
+    soup = bs(r.content, 'html.parser')
+    script = soup.findAll('script', {'type':'application/ld+json'})
+    data = json.loads(script[2].text)
+    products = []
+    for product in data['itemListElement']:
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id']])
+    return products
 
 def login_view(request):
     return render(request, 'login.html')
