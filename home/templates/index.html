@@ -1,42 +1,40 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprara!</title>
-</head>
 <body style="background-color:#f7e8d7; padding-top: 100px;">
     {% include "base.html" %}
     <div class="container text-center" style="padding: 1%; position: relative;">
         <div class="child">
             <h2 style="color: #644321; font-weight: bold;">Categorías</h2>
-            <h3 style="color: #9d8b78; font-weight: lighter;">¿No sabes qué comprar? ¿Por qué no comenzar buscando alguna categoría?</h3>
+            <h3 style="color: #9d8b78; font-weight: 400;">¿No sabes qué comprar? Podrías comenzar explorando alguna categoría</h3>
             <div class="row" style="margin: 20px;">
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
                         <img src="{% static 'ropa.jpg' %}" class="img" alt="ropa" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
-                    <div class="row" style="margin: 10px;">
-                        <button type="submit" class="btn" style="background-color:#644321; color: white;">Ropa</button>
-                    </div>
+                    <form class="row" action="{% url 'search' %}" method="POST" role="search" style="margin: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="search_string" value="ropa"/>
+                        <button type="submit" class="btn" style="background-color:#644321; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Ropa</button>
+                    </form>
                 </div>
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
                         <img src="{% static 'muebles.jpg' %}" class="img" alt="muebles " style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
-                    <div class="row" style="margin: 10px;">
-                        <button type="submit" class="btn" style="background-color:#644321; color: white;">Muebles</button>
-                    </div>
+                    <form class="row" action="{% url 'search' %}" method="POST" role="search" style="margin: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="search_string" value="muebles"/>
+                        <button type="submit" class="btn" style="background-color:#644321; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Muebles</button>
+                    </form>
                 </div>
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
                         <img src="{% static 'electrodomesticos.jpg' %}" class="img" alt="electrodomesticos" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
-                    <div class="row" style="margin: 10px;">
-                        <button type="submit" class="btn" style="background-color:#644321; color: white;">Electrodomésticos</button>
-                    </div>
+                    <form class="row" action="{% url 'search' %}" method="POST" role="search" style="margin: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="search_string" value="electrodomesticos"/>
+                        <button type="submit" class="btn" style="background-color:#644321; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Electrodomésticos</button>
+                    </form>
                 </div>
             </div>
             <div class="row" style="margin: 20px;">
@@ -44,28 +42,33 @@
                     <div class="row" style="margin: 10px;">
                         <img src="{% static 'deportes.jpg' %}" class="img" alt="deportes" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
-                    <div class="row" style="margin: 10px;">
-                        <button type="submit" class="btn" style="background-color:#644321; color: white;">Deportes</button>
-                    </div>
+                    <form class="row" action="{% url 'search' %}" method="POST" role="search" style="margin: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="search_string" value="deportes"/>
+                        <button type="submit" class="btn" style="background-color:#644321; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Deportes</button>
+                    </form>
                 </div>
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
                         <img src="{% static 'tecnologia.jpg' %}" class="img" alt="tecnologia" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
-                    <div class="row" style="margin: 10px;">
-                        <button type="submit" class="btn" style="background-color:#644321; color: white;">Tecnología</button>
-                    </div>
+                    <form class="row" action="{% url 'search' %}" method="POST" role="search" style="margin: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="search_string" value="tecnologia"/>
+                        <button type="submit" class="btn" style="background-color:#644321; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Tecnología</button>
+                    </form>
                 </div>
                 <div class="col" style="margin: 30px;">
                     <div class="row" style="margin: 10px;">
                         <img src="{% static 'hogar.jpg' %}" class="img" alt="hogar" style="width: 300px; height: 200px; object-fit: cover; border-radius: 10%;">
                     </div>
-                    <div class="row" style="margin: 10px;">
-                        <button type="submit" class="btn" style="background-color:#644321; color: white;">Productos para el hogar</button>
-                    </div>
+                    <form class="row" action="{% url 'search' %}" method="POST" role="search" style="margin: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="search_string" value="aseo"/>
+                        <button type="submit" class="btn" style="background-color:#644321; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Productos para el hogar</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>    
 </body>
-</html>

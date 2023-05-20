@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
-from home.views import index
+from home.views import index, donate
+from user.views import profile
 
 urlpatterns = [
     path('login/', views.login_view, name="login"),
@@ -9,5 +10,7 @@ urlpatterns = [
     path('register/complete/', views.complete_registration, name="complete_registration"),
     path('login/complete/', views.complete_login, name="complete_login"),
     path('search/', views.search, name="search"),
+    path('profile/', profile, name="profile"),
+    path('donate/', donate, name="donate"),
     path('', index, name="home"),
 ]

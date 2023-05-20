@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
 from bs4 import BeautifulSoup as bs
-import requests, json
+import requests, json, random
 
 def search(request):
     search_string = request.POST.get('search_string').replace(' ', '%20')
@@ -27,58 +27,56 @@ def search(request):
     except:
         pass
 
+    random.shuffle(products)
     return render(request, 'search.html', {'products':products})
 
 def metro_sc(query):
     url = f'https://www.tiendasmetro.co/{query}?_q={query}&map=ft'
     #Replace User-Agent header (this protects Scraping by getting banned from the website)
     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
-    print(url)
     soup = bs(r.content, 'html.parser')
     script = soup.findAll('script', {'type':'application/ld+json'})
     data = json.loads(script[2].text)
     products = []
+    print(data)
     for product in data['itemListElement']:
-        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id']])
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Metro"])
     return products
 
 def exito_sc(query):
     url = f'https://www.exito.com/{query}?_q={query}&map=ft'
     #Replace User-Agent header (this protects Scraping by getting banned from the website)
     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
-    print(url)
     soup = bs(r.content, 'html.parser')
     script = soup.findAll('script', {'type':'application/ld+json'})
     data = json.loads(script[2].text)
     products = []
     for product in data['itemListElement']:
-        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id']])
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Éxito"])
     return products
 
 def jumbo_sc(query):
     url = f'https://www.tiendasjumbo.co/{query}?_q={query}&map=ft'
     #Replace User-Agent header (this protects Scraping by getting banned from the website)
     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
-    print(url)
     soup = bs(r.content, 'html.parser')
     script = soup.findAll('script', {'type':'application/ld+json'})
     data = json.loads(script[2].text)
     products = []
     for product in data['itemListElement']:
-        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id']])
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Jumbo"])
     return products
 
 def olimpica_sc(query):
     url = f'https://www.olimpica.com/{query}?_q={query}&map=ft'
     #Replace User-Agent header (this protects Scraping by getting banned from the website)
     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
-    print(url)
     soup = bs(r.content, 'html.parser')
     script = soup.findAll('script', {'type':'application/ld+json'})
     data = json.loads(script[2].text)
     products = []
     for product in data['itemListElement']:
-        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id']])
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Olímpica"])
     return products
 
 def login_view(request):

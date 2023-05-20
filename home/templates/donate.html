@@ -1,0 +1,27 @@
+{% load static %}
+<title>Apóyanos</title>
+{% include "base.html" %}
+
+<div style="margin-top: 100px;">
+    <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;" onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
+        <img src="{% static 'left-arrow.png' %}" alt="left-arrow!" style="height: 40px; width: auto;">
+        Inicio
+    </a>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+        <!-- Saved buttons use the "secure click" command -->
+        <input type="hidden" name="cmd" value="_s-xclick">
+      
+        <!-- Saved buttons are identified by their button IDs -->
+        <input type="hidden" name="hosted_button_id" value="221">
+      
+        <!-- Saved buttons display an appropriate button image. -->
+        <input type="image" name="submit"
+          src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+          alt="PayPal - The safer, easier way to pay online">
+        <img alt="" width="1" height="1"
+          src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+      
+      </form>
+</div>

@@ -1,0 +1,13 @@
+{% load static %}
+
+{% include "base.html" %}
+
+<div style="margin-top: 100px;">
+    <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;" onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
+        <img src="{% static 'left-arrow.png' %}" alt="left-arrow!" style="height: 40px; width: auto;">
+        Inicio
+    </a>
+
+    <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 5%;">Mi perfil</p>
+
+</div>
