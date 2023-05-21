@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from home.views import index, donate
-from user.views import profile
+from user.views import profile, change_password
 
 urlpatterns = [
     path('login/', views.login_view, name="login"),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('filter/', views.filter, name="filter"),
     path('sort_ascending/', views.sort_ascending, name="sort_ascending"),
     path('sort_descending/', views.sort_descending, name="sort_descending"),
+    path('profile/change_password/', change_password, name="change_password"),
     path('profile/', profile, name="profile"),
     path('donate/', donate, name="donate"),
     path('', index, name="home"),

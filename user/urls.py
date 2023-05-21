@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
-from home.views import index
+
+app_name = "user"
 
 urlpatterns = [
     path('profile/', views.profile, name="profile"),
-    path('profile/complete/', views.change_password, name="complete"),
-    path('', index, name="home"),
+    path('profile/change_password', views.change_password, name="change_password"),
 ]

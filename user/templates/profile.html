@@ -1,7 +1,5 @@
 {% load static %}
-
 {% include "base.html" %}
-
 <div style="margin-top: 100px;">
     <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;" onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
         <img src="{% static 'left-arrow.png' %}" alt="left-arrow!" style="height: 40px; width: auto;">
@@ -25,21 +23,21 @@
                     </h3>
                 </div>
                 <div class="container-fluid col">
-                    <form action="#" method="POST">
+                    <form action="{% url 'change_password' %}" method="POST">
+                        {% csrf_token %}
                         <div class="row">
                             <input class="form-control me-2" placeholder="Nueva contraseña" name="pswd1" style=" border:2px solid #644321; margin: 5px auto;">
                         </div>
                         <div class="row">
                             <input class="form-control me-2" placeholder="Confirmar contraseña" name="pswd2" style="border:2px solid #644321; margin: 5px auto;">
                         </div>
-                        {% csrf_token %}
                         <div class="row">
                             <button type="submit" class="btn" style="background-color:#644321; color: white; margin: 5px auto;  width: 50%;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Cambiar contraseña</button>
                         </div>
                         {% if messages %}
-                        <ul class="messages">
+                        <ul class="messages" style="padding: 0; list-style-type: none;">
                         {% for message in messages %}
-                            <p class="{{ message.tags }}" style="color: #9e1a1a; font-weight:bold; font-size:larger;">{{ message }}</p>
+                            <p class="{{ message.tags }}" style="color: #c76650; font-weight:bold; font-size:larger;">{{ message }}</p>
                         {% endfor %}
                         </ul>
                         {% endif %}
@@ -89,11 +87,7 @@
                 </div>
               </div>
             {% endfor %}
-            </div>
           </div>
-        <div>
-
-        </div>
-    </div>
-
+      </div>
+  </div>
 </div>
