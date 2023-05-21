@@ -9,26 +9,28 @@ import requests, json, random
 
 def search(request):
     search_string = request.POST.get('search_string').replace(' ', '%20')
-    products = []
+    global list_products
+    list_products = []
     try:
-        products.extend(exito_sc(search_string))
+        list_products.extend(exito_sc(search_string))
     except:
         pass
     try:
-        products.extend(metro_sc(search_string))
+        list_products.extend(metro_sc(search_string))
     except:
         pass
     try:
-        products.extend(jumbo_sc(search_string))
+        list_products.extend(jumbo_sc(search_string))
     except:
         pass
     try:
-        products.extend(olimpica_sc(search_string))
+        list_products.extend(olimpica_sc(search_string))
     except:
         pass
 
-    random.shuffle(products)
-    return render(request, 'search.html', {'products':products})
+    random.shuffle(list_products)
+
+    return render(request, 'search.html', {'products':list_products})
 
 def metro_sc(query):
     url = f'https://www.tiendasmetro.co/{query}?_q={query}&map=ft'
@@ -38,7 +40,6 @@ def metro_sc(query):
     script = soup.findAll('script', {'type':'application/ld+json'})
     data = json.loads(script[2].text)
     products = []
-    print(data)
     for product in data['itemListElement']:
         products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Metro"])
     return products
@@ -121,3 +122,34 @@ def complete_registration(request):
 def logout_request(request):
     logout(request)    
     return redirect('../../')
+
+def filter(request):
+    try:
+        fproducts = list_products
+    except:
+        fproducts = []
+    min_price = request.POST.get('min_price')
+    max_price = request.POST.get('max_price')
+    fproducts = [product for product in fproducts if int(product[1]) >= int(min_price) and int(product[1]) <= int(max_price)]
+    
+    return render(request, 'search.html', {'products':fproducts})
+
+def sort_ascending(request):
+    try:
+        sproducts = list_products
+    except:
+        sproducts = []
+    sort = request.POST.get('sort')
+    sproducts = sorted(sproducts, key=lambda x: x[1])
+
+    return render(request, 'search.html', {'products':sproducts})
+
+def sort_descending(request):
+    try:
+        sproducts = list_products
+    except:
+        sproducts = []
+    sort = request.POST.get('sort')
+    sproducts = sorted(sproducts, key=lambda x: x[1], reverse=True)
+
+    return render(request, 'search.html', {'products':sproducts})

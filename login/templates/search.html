@@ -12,9 +12,10 @@
                 <p style="color: #c76650; font-weight: bold;">
                   Buscar por precio
                 </p>
-                <form>
-                  <input class="form-control me-2" placeholder="Desde..." name="desde" type="number" aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
-                  <input class="form-control me-2" placeholder="Hasta..." name="Hasta" type="number" aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
+                <form action="{% url 'filter' %}" method="POST">
+                  {% csrf_token %}
+                  <input class="form-control me-2" placeholder="Desde..." name="min_price" type="number" aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
+                  <input class="form-control me-2" placeholder="Hasta..." name="max_price" type="number" aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
                   <button type="submit" class="btn" style="background-color:#644321; font-weight: bold; width: 100%; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Aplicar</button>
                 </form>
               </div> 
@@ -24,11 +25,11 @@
                 <p style="color: #c76650; font-weight: bold;">
                   Ordenar
                 </p>
-                <a style="color: #644321; font-weight:bold; font-size: medium;" href="#" role="button" onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
+                <a style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_descending' %}" name="sort" role="button" onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
                   De mayor a menor
                 </a>
                 <p> </p>
-                <a style="color: #644321; font-weight:bold; font-size: medium;" href="#" role="button" onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
+                <a style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_ascending' %}" name="sort" role="button" onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
                   De menor a mayor
                 </a>
               </div>
