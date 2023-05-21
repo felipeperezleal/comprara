@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 # Importamos el modelo de usuario que ya viene con Django
 from django.contrib.auth.models import User
+from .models import Product
 # Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
 from bs4 import BeautifulSoup as bs
@@ -29,6 +30,15 @@ def search(request):
 
     random.shuffle(products)
     return render(request, 'search.html', {'products':products})
+
+def save_product(request):
+    '''
+    url = request.POST.get('product_url')
+    '''
+    user = User.objects.filter(id=request.user.id)
+    print(user)
+
+    # product = Product(url, user.id)
 
 def metro_sc(query):
     url = f'https://www.tiendasmetro.co/{query}?_q={query}&map=ft'

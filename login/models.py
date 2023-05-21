@@ -1,5 +1,9 @@
 from django.db import models
-# Este import creo que no es necesario en este archivo aún. Se requeriría en el momento de hacer uso de este modelo en otro modelo en un sprint futuro
 from django.contrib.auth.models import User
 
-# No es necesario por ahora crear ningún modelo propio acá
+class Product(models.Model):
+    url = models.CharField(max_length=500)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.url

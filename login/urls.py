@@ -12,5 +12,7 @@ urlpatterns = [
     path('search/', views.search, name="search"),
     path('profile/', profile, name="profile"),
     path('donate/', donate, name="donate"),
+    path('save/', views.save_product, name="save_product"),
+
     path('', index, name="home"),
 ]
