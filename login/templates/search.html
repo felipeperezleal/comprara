@@ -67,9 +67,12 @@
                       Ir a la tienda
                     </button>
                   </form>
-                  <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">
-                    Guardar
-                  </button>
+                  <form action="{% url 'save_product' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">
+                      Guardar
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

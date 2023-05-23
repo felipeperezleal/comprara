@@ -11,6 +11,7 @@ urlpatterns = [
     path('login/complete/', views.complete_login, name="complete_login"),
     path('search/', views.search, name="search"),
     path('filter/', views.filter, name="filter"),
+    path('save_product/', views.save_product, name="save_product"),
     path('sort_ascending/', views.sort_ascending, name="sort_ascending"),
     path('sort_descending/', views.sort_descending, name="sort_descending"),
     path('profile/change_password/', change_password, name="change_password"),

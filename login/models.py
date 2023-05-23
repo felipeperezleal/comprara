@@ -1,5 +1,10 @@
 from django.db import models
-# Este import creo que no es necesario en este archivo aún. Se requeriría en el momento de hacer uso de este modelo en otro modelo en un sprint futuro
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 
-# No es necesario por ahora crear ningún modelo propio acá
+class User(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    inventory = ArrayField(ArrayField(models.CharField(max_length=50)), blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username

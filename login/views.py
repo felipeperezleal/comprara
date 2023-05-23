@@ -153,3 +153,13 @@ def sort_descending(request):
     sproducts = sorted(sproducts, key=lambda x: x[1], reverse=True)
 
     return render(request, 'search.html', {'products':sproducts})
+
+def save_product(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        image = request.POST.get('image')
+        url = request.POST.get('url')
+        user = request.user
+        user.inventory.append([name, price, image, url])
+        return redirect('search')
