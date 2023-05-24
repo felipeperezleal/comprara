@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 # Importamos el modelo de usuario que ya viene con Django
-from django.contrib.auth.models import User
+from .models import CustomUser as User
 # Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
 from bs4 import BeautifulSoup as bs
@@ -111,7 +111,7 @@ def register(request):
 
 def complete_registration(request):
     if request.POST.get('password') == request.POST.get('passwordConfirm'):
-        user = User(username = request.POST['username'], password = request.POST['password'])
+        user = User(username = request.POST['username'], password = request.POST['password'], inventory = [])
         user.set_password(request.POST['password'])
         user.save()
         return redirect('login')
@@ -156,10 +156,13 @@ def sort_descending(request):
 
 def save_product(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        price = request.POST.get('price')
-        image = request.POST.get('image')
-        url = request.POST.get('url')
+        name = request.POST.get('product_name')
+        price = request.POST.get('product_price')
+        image = request.POST.get('product_image')
+        url = request.POST.get('product_store')
+        seller = request.POST.get('product_seller')
         user = request.user
-        user.inventory.append([name, price, image, url])
-        return redirect('search')
+        user.inventory.append([name, price, image, url, seller])
+        user.save()
+    lproducts = list_products
+    return render(request, 'search.html', {'products':lproducts})

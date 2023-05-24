@@ -48,7 +48,7 @@
         <p class="fs-2" style="color: #644321; font-weight:bolder;">
             Productos guardados
         </p>
-        <div class="col-md-10" >
+        <div class="col-md-10 container-fluid" >
             {% for product in user.inventory %}
               <div class="d-flex row" style="white-space: nowrap;">
                 <div class="d-flex align-items-center" style="padding: 0.1%;  border:#644321 solid ; border-radius: 20px; margin: 0.5%; background-color: #fff;">
@@ -79,9 +79,13 @@
                           Ir a la tienda
                         </button>
                       </form>
-                      <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">
-                        Guardar
-                      </button>
+                      <form action="{% url 'remove_product' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_name" value="{{ product.0 }}">
+                        <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">
+                          Quitar producto
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>

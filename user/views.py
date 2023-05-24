@@ -21,4 +21,12 @@ def change_password(request):
         else:
             messages.error(request, 'Las contraseñas no coinciden')
 
-    return render(request, 'profile.html')
+    return render(request, 'profile.html')\
+    
+def remove_product(request):
+    if request.method == 'POST':
+        product_name = request.POST.get('product_name')
+        user = request.user
+        user.inventory = [product for product in user.inventory if product[0] != product_name]
+        user.save()
+        return redirect('profile')

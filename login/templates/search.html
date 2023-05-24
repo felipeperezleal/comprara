@@ -69,6 +69,11 @@
                   </form>
                   <form action="{% url 'save_product' %}" method="POST">
                     {% csrf_token %}
+                    <input type="hidden" name="product_name" value="{{ product.0 }}">
+                    <input type="hidden" name="product_price" value="{{ product.1 }}">
+                    <input type="hidden" name="product_image" value="{{ product.2 }}">
+                    <input type="hidden" name="product_store" value="{{ product.3 }}">
+                    <input type="hidden" name="product_seller" value="{{ product.4 }}">
                     <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">
                       Guardar
                     </button>
