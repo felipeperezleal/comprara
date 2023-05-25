@@ -1,97 +1,104 @@
 {% load static %}
 {% include "base.html" %}
 <div>
-    <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;" onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
-        <img src="{% static 'left-arrow.png' %}" alt="left-arrow!" style="height: 40px; width: auto;">
-        Inicio
-    </a>
+  <a class="fs-4" href="{% url 'home' %}"
+    style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;"
+    onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
+    <img src="{% static 'left-arrow.png' %}" alt="left-arrow!" style="height: 40px; width: auto;">
+    Inicio
+  </a>
 
-    <div class="container-fluid" style="padding: 2%;">
-        <div class="container-fluid text-center">
-            <div class="row">
-                <div class="col">
-                    <p class="fs-1" style="color: #644321; font-weight:bolder;">
-                        Mi perfil:
-                    </p>
-                </div>
-                <div class="col">
-                    <h3 style="color: #644321; font-weight:normal; margin: 5px;">
-                        Mi usuario:
-                    </h3>
-                    <h3 style="color: #644321; font-weight:300; margin: 5px;">
-                        {{user.username}}
-                    </h3>
-                </div>
-                <div class="container-fluid col">
-                    <form action="{% url 'change_password' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <input class="form-control me-2" placeholder="Nueva contraseña" name="pswd1" style=" border:2px solid #644321; margin: 5px auto;">
-                        </div>
-                        <div class="row">
-                            <input class="form-control me-2" placeholder="Confirmar contraseña" name="pswd2" style="border:2px solid #644321; margin: 5px auto;">
-                        </div>
-                        <div class="row">
-                            <button type="submit" class="btn" style="background-color:#644321; color: white; margin: 5px auto;  width: 50%;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Cambiar contraseña</button>
-                        </div>
-                        {% if messages %}
-                        <ul class="messages" style="padding: 0; list-style-type: none;">
-                        {% for message in messages %}
-                            <p class="{{ message.tags }}" style="color: #c76650; font-weight:bold; font-size:larger;">{{ message }}</p>
-                        {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </form>
-                </div>
-            </div>
+  <div class="container-fluid" style="padding: 2%;">
+    <div class="container-fluid text-center">
+      <div class="row">
+        <div class="col">
+          <p class="fs-1" style="color: #644321; font-weight:bolder;">
+            Mi perfil:
+          </p>
         </div>
-        <p class="fs-2" style="color: #644321; font-weight:bolder;">
-            Productos guardados
-        </p>
-        <div class="col-md-10 container-fluid" >
-            {% for product in user.inventory %}
-              <div class="d-flex row" style="white-space: nowrap;">
-                <div class="d-flex align-items-center" style="padding: 0.1%;  border:#644321 solid ; border-radius: 20px; margin: 0.5%; background-color: #fff;">
-                  <div class="container">
-                    <div class="row"  style="height: max-content; width: max-content;">
-                      <div class="col">
-                        <img src="{{ product.2 }}" class="card-img-top" alt={{ product.0 }} height="160px">
-                      </div>
-                      <div class="col d-flex align-items-center">
-                        <div>
-                          <p style="color: #c76650; font-weight: bold;">
-                            {{ product.0 }}
-                          </p>
-                          <p style="color: #644321; font-weight: normal;">
-                            Vendedor: {{ product.4 }}
-                          </p>
-                          <p style="color: #644321; font-weight: bold;">
-                            $ {{ product.1 }}
-                          </p>
-                        </div>  
-                      </div>
-                    </div>
-                  </div>
-                  <div style="padding: 2%; width: auto;">
-                    <div class="d-flex flex-column gap-3">
-                      <form action="{{ product.3 }}">
-                        <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';" formtarget="_blank">
-                          Ir a la tienda
-                        </button>
-                      </form>
-                      <form action="{% url 'remove_product' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="product_name" value="{{ product.0 }}">
-                        <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">
-                          Quitar producto
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
+        <div class="col">
+          <h3 style="color: #644321; font-weight:normal; margin: 5px;">
+            Mi usuario:
+          </h3>
+          <h3 style="color: #644321; font-weight:300; margin: 5px;">
+            {{user.username}}
+          </h3>
+        </div>
+        <div class="container-fluid col">
+          <form action="{% url 'change_password' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <input class="form-control me-2" placeholder="Nueva contraseña" name="pswd1"
+                style=" border:2px solid #644321; margin: 5px auto;">
+            </div>
+            <div class="row">
+              <input class="form-control me-2" placeholder="Confirmar contraseña" name="pswd2"
+                style="border:2px solid #644321; margin: 5px auto;">
+            </div>
+            <div class="row">
+              <button type="submit" class="btn"
+                style="background-color:#644321; color: white; margin: 5px auto;  width: 50%;"
+                onmouseover="this.style.backgroundColor='#d79f54';"
+                onmouseout="this.style.backgroundColor='#644321';">Cambiar contraseña</button>
+            </div>
+            {% if messages %}
+            <ul class="messages" style="padding: 0; list-style-type: none;">
+              {% for message in messages %}
+              <p class="{{ message.tags }}" style="color: #c76650; font-weight:bold; font-size:larger;">{{ message }}
+              </p>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </form>
+        </div>
       </div>
+    </div>
+    <p class="fs-2" style="color: #644321; font-weight:bolder;">
+      Productos guardados
+    </p>
+    {% for product in user.inventory %}
+    <div class="container-fluid text-center my-2"
+      style="border:#644321 solid ; border-radius: 20px; background-color: #fff;">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="col">
+            <img src="{{ product.2 }}" class="card-img-top" alt="{{ product.0 }}" style="max-width: 200px;"
+              height="auto" width="auto">
+          </div>
+        </div>
+        <div class="col">
+          <div class="col d-flex flex-column align-items-center">
+            <div>
+              <p style="color: #c76650; font-weight: bold;">{{ product.0 }}</p>
+              <p style="color: #644321; font-weight: normal;">Vendedor: {{ product.4 }}</p>
+              <p style="color: #644321; font-weight: bold;">$ {{ product.1 }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex flex-column align-items-center">
+            <form action="{{ product.3 }}">
+              <button type="submit" class="btn py-4 my-1"
+                style="background-color:#644321; font-weight: bold; width: 200px; color: white;"
+                onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';"
+                formtarget="_blank">
+                Ir a la tienda
+              </button>
+            </form>
+            <form action="{% url 'remove_product' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="product_name" value="{{ product.0 }}">
+              <button type="submit" class="btn py-4 my-1"
+                style="background-color:#644321; font-weight: bold; width: 200px; color: white;"
+                onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">
+                Quitar producto
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
+{% include 'footer.html' %}

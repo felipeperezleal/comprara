@@ -4,87 +4,101 @@
 <div>
   <!-- Mostramos los títulos de artículos -->
   <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-2" style="margin: 0.5%;">
-          <div class="container">
-            <div class="row" style="background-color: #f7e8d7;border:#644321 solid ; border-radius: 20px; margin: 0.5%; margin-bottom: 5%; width: 100%; height: max-content;">
-              <div style="padding: 5%;">
-                <p style="color: #c76650; font-weight: bold;">
-                  Buscar por precio
-                </p>
-                <form action="{% url 'filter' %}" method="POST">
-                  {% csrf_token %}
-                  <input class="form-control me-2" placeholder="Desde..." name="min_price" type="number" aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
-                  <input class="form-control me-2" placeholder="Hasta..." name="max_price" type="number" aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
-                  <button type="submit" class="btn" style="background-color:#644321; font-weight: bold; width: 100%; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Aplicar</button>
-                </form>
-              </div> 
+    <div class="row">
+      <div class="col-md-2" style="margin: 0.5%;">
+        <div class="container">
+          <div class="row"
+            style="background-color: #f7e8d7;border:#644321 solid ; border-radius: 20px; margin: 0.5%; margin-bottom: 5%; width: 100%; height: max-content;">
+            <div style="padding: 5%;">
+              <p style="color: #c76650; font-weight: bold;">
+                Buscar por precio
+              </p>
+              <form action="{% url 'filter' %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control me-2" placeholder="Desde..." name="min_price" type="number"
+                  aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
+                <input class="form-control me-2" placeholder="Hasta..." name="max_price" type="number"
+                  aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
+                <button type="submit" class="btn"
+                  style="background-color:#644321; font-weight: bold; width: 100%; color: white;"
+                  onmouseover="this.style.backgroundColor='#d79f54';"
+                  onmouseout="this.style.backgroundColor='#644321';">Aplicar</button>
+              </form>
             </div>
-            <div class="row" style="background-color: #f7e8d7;border:#644321 solid ; border-radius: 20px; margin: 0.5%; margin-bottom: 5%; width: 100%; height: max-content;">
-              <div style="padding: 5%;">
-                <p style="color: #c76650; font-weight: bold;">
-                  Ordenar
-                </p>
-                <a style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_descending' %}" name="sort" role="button" onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
-                  De mayor a menor
-                </a>
-                <p> </p>
-                <a style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_ascending' %}" name="sort" role="button" onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
-                  De menor a mayor
-                </a>
+          </div>
+          <div class="row"
+            style="background-color: #f7e8d7;border:#644321 solid ; border-radius: 20px; margin: 0.5%; margin-bottom: 5%; width: 100%; height: max-content;">
+            <div style="padding: 5%;">
+              <p style="color: #c76650; font-weight: bold;">
+                Ordenar
+              </p>
+              <a style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_descending' %}"
+                name="sort" role="button" onmouseover="this.style.textColor='#d79f54';"
+                onmouseout="this.style.color='#644321';">
+                De mayor a menor
+              </a>
+              <p> </p>
+              <a style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_ascending' %}"
+                name="sort" role="button" onmouseover="this.style.textColor='#d79f54';"
+                onmouseout="this.style.color='#644321';">
+                De menor a mayor
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        {% for product in products %}
+        <div class="container-fluid text-center my-2"
+          style="border:#644321 solid ; border-radius: 20px; background-color: #fff;">
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="col">
+                <img src="{{ product.2 }}" class="card-img-top" alt="{{ product.0 }}" style="max-width: 200px;"
+                  height="auto" width="auto">
+              </div>
+            </div>
+            <div class="col">
+              <div class="col d-flex flex-column align-items-center">
+                <div>
+                  <p style="color: #c76650; font-weight: bold;">{{ product.0 }}</p>
+                  <p style="color: #644321; font-weight: normal;">Vendedor: {{ product.4 }}</p>
+                  <p style="color: #644321; font-weight: bold;">$ {{ product.1 }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex flex-column align-items-center">
+                <form action="{{ product.3 }}">
+                  <button type="submit" class="btn py-4 my-1"
+                    style="background-color:#644321; font-weight: bold; width: 200px; color: white;"
+                    onmouseover="this.style.backgroundColor='#d79f54';"
+                    onmouseout="this.style.backgroundColor='#644321';" formtarget="_blank">
+                    Ir a la tienda
+                  </button>
+                </form>
+                <form action="{% url 'save_product' %}" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="product_name" value="{{ product.0 }}">
+                  <input type="hidden" name="product_price" value="{{ product.1 }}">
+                  <input type="hidden" name="product_image" value="{{ product.2 }}">
+                  <input type="hidden" name="product_store" value="{{ product.3 }}">
+                  <input type="hidden" name="product_seller" value="{{ product.4 }}">
+                  <button type="submit" class="btn"
+                    style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;"
+                    onmouseover="this.style.backgroundColor='#d79f54';"
+                    onmouseout="this.style.backgroundColor='#644321';">
+                    Guardar
+                  </button>
+                </form>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-9">
-        {% for product in products %}
-          <div class="d-flex row" style="white-space: nowrap;">
-            <div class="d-flex align-items-center" style="padding: 0.1%;  border:#644321 solid ; border-radius: 20px; margin: 0.5%; background-color: #fff;">
-              <div class="container">
-                <div class="row"  style="height: max-content; width: max-content;">
-                  <div class="col">
-                    <img src="{{ product.2 }}" class="card-img-top" alt={{ product.0 }} height="160px">
-                  </div>
-                  <div class="col d-flex align-items-center">
-                    <div>
-                      <p style="color: #c76650; font-weight: bold;">
-                        {{ product.0 }}
-                      </p>
-                      <p style="color: #644321; font-weight: normal;">
-                        Vendedor: {{ product.4 }}
-                      </p>
-                      <p style="color: #644321; font-weight: bold;">
-                        $ {{ product.1 }}
-                      </p>
-                    </div>  
-                  </div>
-                </div>
-              </div>
-              <div style="padding: 2%; width: auto;">
-                <div class="d-flex flex-column gap-3">
-                  <form action="{{ product.3 }}">
-                    <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';" formtarget="_blank">
-                      Ir a la tienda
-                    </button>
-                  </form>
-                  <form action="{% url 'save_product' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="product_name" value="{{ product.0 }}">
-                    <input type="hidden" name="product_price" value="{{ product.1 }}">
-                    <input type="hidden" name="product_image" value="{{ product.2 }}">
-                    <input type="hidden" name="product_store" value="{{ product.3 }}">
-                    <input type="hidden" name="product_seller" value="{{ product.4 }}">
-                    <button type="submit" class="btn" style="background-color:#644321; padding: 10%; font-weight: bold; width: 200px; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">
-                      Guardar
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
         {% endfor %}
       </div>
-      </div>
     </div>
-  </div>  
+  </div>
 </div>
+</div>
+{% include 'footer.html' %}

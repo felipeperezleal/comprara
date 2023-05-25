@@ -2,33 +2,46 @@
 {% include "base.html" %}
 <title>Registrarme</title>
 <div>
-  <a class="fs-4" href="{% url 'home' %}" style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;" onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
+  <a class="fs-4" href="{% url 'home' %}"
+    style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;"
+    onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
     <img src="{% static 'left-arrow.png' %}" alt="left-arrow!" style="height: 40px; width: auto;">
     Inicio
   </a>
 
   <!-- register -->
-  <form class="d-flex flex-column mb-3 align-items-center position-absolute top-50 start-50 translate-middle" action="{% url 'complete_registration' %}" method="POST" style="padding: 10%;">
+  <form class="d-flex flex-column align-items-center" action="{% url 'complete_registration' %}" method="POST">
     {% csrf_token %}
-    <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 10%;">Registro</p>
+    <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 5%;">Registro</p>
     <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Nombre de usuario" name="username" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
+      <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"
+        style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;"
+        required>
     </div>
     <div class="mb-3">
-      <input type="password" class="form-control" placeholder="Contraseña" name="password" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
+      <input type="password" class="form-control" placeholder="Contraseña" name="password"
+        style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;"
+        required>
     </div>
     <div class="mb-3">
-      <input type="password" class="form-control" placeholder="Confirmar contraseña" name="passwordConfirm" style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;" required>
+      <input type="password" class="form-control" placeholder="Confirmar contraseña" name="passwordConfirm"
+        style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;"
+        required>
     </div>
     {% if messages %}
-      <ul class="messages">
+    <ul class="messages">
       {% for message in messages %}
-          <p class="{{ message.tags }}" style="color: #9e1a1a; font-weight:bold; font-size:larger; padding-top: 5%;">{{ message }}</p>
+      <p class="{{ message.tags }}" style="color: #c76650; font-weight:bold; font-size:larger; padding-top: 5%;">{{
+        message }}</p>
       {% endfor %}
-      </ul>
+    </ul>
     {% endif %}
-    <button type="submit" class="btn" style="background-color:#644321; padding: 3%; color: white;" onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#644321';">Registrarme</button>
-    <p class="fs-5" style="color: #644321; font-weight:bold; padding-top: 10%;">¿Ya tienes una cuenta? <a href="{% url 'login' %}" style="color:#d79f54;">Inicia sesión aquí</a></p>
+    <button type="submit" class="btn py-3 px-5" style="background-color:#644321; color: white;"
+      onmouseover="this.style.backgroundColor='#d79f54';"
+      onmouseout="this.style.backgroundColor='#644321';">Registrarme</button>
+    <p class="fs-5" style="color: #644321; font-weight:bold; padding-top: 5%;">¿Ya tienes una cuenta? <a
+        href="{% url 'login' %}" style="color:#d79f54;">Inicia sesión aquí</a></p>
   </form>
   <!-- register -->
 </div>
+{% include 'footer.html' %}
