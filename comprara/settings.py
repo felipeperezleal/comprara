@@ -90,12 +90,11 @@ DATABASES = {
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "compraraDB",
+        "NAME": "railway",
         "USER": "postgres",
-        "PASSWORD": "postgres",
-        #admin123
-        "HOST": "localhost",
-        "PORT": "5432",
+        "PASSWORD": "3ENM058eFq31i8QmziWx",
+        "HOST": "containers-us-west-64.railway.app",
+        "PORT": "7305",
     }
 }
 
