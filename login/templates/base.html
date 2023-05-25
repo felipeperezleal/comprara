@@ -41,11 +41,10 @@
           {% if user.is_authenticated %}
           <ul class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"
-              style="color: #644321; font-weight:bold; font-size: x-large;text-decoration: none;"
-              href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-              onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
-              <img src="{% static 'profile.png' %}" alt="Profile"
-                style="height: 50px; width: auto;"/>
+              style="color: #644321; font-weight:bold; font-size: x-large;text-decoration: none;" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.style.textColor='#d79f54';"
+              onmouseout="this.style.color='#644321';">
+              <img src="{% static 'profile.png' %}" alt="Profile" style="height: 50px; width: auto;" />
               {{user.username}}
             </a>
             <ul class="dropdown-menu">
@@ -63,10 +62,9 @@
             </ul>
             {% else %}
             <ul class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}"
-                style="color: #644321; font-weight:bold; font-size: x-large;"
+              <a class="nav-link" href="{% url 'login' %}" style="color: #644321; font-weight:bold; font-size: x-large;"
                 onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
-                <img src="{% static 'profile.png' %}" alt="Profile"/>
+                <img src="{% static 'profile.png' %}" alt="Profile" style="height: 50px; width: auto;" />
                 Ingresar
               </a>
             </ul>
