@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-akj^h52n6y&7)@dwp#tf3om9=nf2(iu$@d#t9!%t#irhsrs0b(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -145,6 +145,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'comprara/static'),)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 LOGIN_REDIRECT_URL = 'home'
 
