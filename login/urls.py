@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from home.views import index, donate
+from home.views import index, complete_donation
 from user.views import profile, change_password, remove_product
 
 urlpatterns = [
@@ -20,6 +20,6 @@ urlpatterns = [
     path('profile/change-password/', change_password, name="change_password"),
     path('profile/remove-product/', remove_product, name="remove_product"),
     path('profile/', profile, name="profile"),
-    path('donate/', donate, name="donate"),
+    path('donate/', complete_donation, name="donate"),
     path('', index, name="home"),
 ]

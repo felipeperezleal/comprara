@@ -1,12 +1,59 @@
 {% load static %}
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+    const mp = new MercadoPago('APP_USR-3be2ef32-2a12-4fe0-8345-e69d8879658b');
+    const bricksBuilder = mp.bricks();
+    mp.bricks().create("wallet", "wallet_container", {
+        initialization: {
+            preferenceId: "wallet_container",
+            redirectMode: "modal"
+        },
+    });
+</script>
 <div class="container-fluid align-items-center">
-    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 border-top py-3 align-items-center d-flex justify-content-around"
+    <footer
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-5 border-top py-3 align-items-center d-flex justify-content-around"
         style="background-color: #644321;">
         <div class="col">
             <ul class="nav flex-column text-center">
-                <li class="nav-item mb-2"><a type="submit" class="btn" style="background-color:#c76650; color: white;"
+                <li class="nav-item mb-2"><button type="submit" class="btn"
+                        style="background-color:#c76650; color: white;"
                         onmouseover="this.style.backgroundColor='#9d8b78';"
-                        onmouseout="this.style.backgroundColor='#c76650';" href="{% url 'donate' %}">Apóyanos</a></li>
+                        onmouseout="this.style.backgroundColor='#c76650';" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#donationModal">Apóyanos</a></li>
+                <!-- Modal -->
+                <div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="donation">¿Te gustaría apoyarnos?</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="POST" action="{% url 'complete_donation' %}">
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <p>Ingresa la cantidad con la que te gustaría apoyarnos:</p>
+                                    <div class="form-group">
+                                        <label hidden="true" for="amount"></label>
+                                        <input type="number" name="amount" id="amount" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn" data-bs-dismiss="modal"
+                                        style="background-color:#9d8b78; font-weight: bold;color: white;"
+                                        onmouseover="this.style.backgroundColor='#d79f54';"
+                                        onmouseout="this.style.backgroundColor='#9d8b78	';" onclick="event.preventDefault()">Cancelar</button>
+                                    <button type="submit" class="btn"
+                                        style="background-color:#644321; font-weight: bold;color: white;"
+                                        onmouseover="this.style.backgroundColor='#d79f54';"
+                                        onmouseout="this.style.backgroundColor='#644321';">Apóyanos!</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <li class="nav-item mb-2"><a href="{% url 'termsandconditions' %}" style="color:white;"> Términos y
                         condiciones</a></li>
                 <li class="nav-item mb-2">
@@ -19,7 +66,9 @@
             <h5 style="color: white;">Meet our team!</h5>
             <ul class="col" style="list-style-type:none; padding: 0;">
                 <li class="nav-item">
-                    <a  href="http://github.com/felipeperezleal" target="_blank" style="color: white;"><p class="nav-link px-2">Sebastián Felipe Pérez Leal</p></a>
+                    <a href="http://github.com/felipeperezleal" target="_blank" style="color: white;">
+                        <p class="nav-link px-2">Sebastián Felipe Pérez Leal</p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <p class="nav-link px-2" style="color: white;">Juan Diego Lozano Colmenares</p>
