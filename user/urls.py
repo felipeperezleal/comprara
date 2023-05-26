@@ -5,5 +5,5 @@ app_name = "user"
 
 urlpatterns = [
     path('profile/', views.profile, name="profile"),
-    path('profile/change_password', views.change_password, name="change_password"),
+    path('profile/change-password', views.change_password, name="change_password"),
 ]

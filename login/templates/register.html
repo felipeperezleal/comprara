@@ -14,12 +14,13 @@
     {% csrf_token %}
     <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 5%;">Registro</p>
     <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"
+      <input type="email" class="form-control" placeholder="Correo electrónico" name="username"
         style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;"
         required>
     </div>
     <div class="mb-3">
-      <input type="password" class="form-control" placeholder="Contraseña" name="password"
+      <input type="password" class="form-control" placeholder="Contraseña (8 caracteres mínimo)" name="password"
+        minlength="8"
         style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;"
         required>
     </div>
@@ -27,6 +28,10 @@
       <input type="password" class="form-control" placeholder="Confirmar contraseña" name="passwordConfirm"
         style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;"
         required>
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="termsCheck" name="termsCheck" style="background-color: #644321;" required>
+      <label class="form-check-label" for="termsCheck" style="color: #644321;">He leído y acepto los <a href="{% url 'termsandconditions' %}" style="color:#d79f54;"> términos y condiciones</a></label>
     </div>
     {% if messages %}
     <ul class="messages">

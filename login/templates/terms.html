@@ -1,0 +1,53 @@
+{% load static %}
+{% include 'base.html' %}
+<a class="fs-4" href="{% url 'register' %}"
+    style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;"
+    onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
+    <img src="{% static 'left-arrow.png' %}" alt="left-arrow!" style="height: 40px; width: auto;">
+    Volver al registro
+</a>
+<div class="m-4 p-4" style="border:#644321 solid ; border-radius: 20px; background-color: #fff;">
+    <h2>Términos y Condiciones de Uso</h2>
+    <p>Al registrarte y utilizar los servicios de Comprara!, aceptas cumplir con los siguientes términos y condiciones:
+    </p>
+    <h4>Registro y Privacidad</h4>
+    <ul style="list-style-type: none;">
+        <li>1.1. Al registrarte en Comprara!, deberás proporcionar un correo electrónico válido y una contraseña. Te
+            comprometes a mantener la confidencialidad de tu cuenta y serás el único responsable de todas las
+            actividades que ocurran bajo tu cuenta.</li>
+        <li>1.2. Recolectaremos y almacenaremos tu correo electrónico con el propósito de gestionar tu cuenta y
+            brindarte acceso a nuestro servicio. Tu información personal no será utilizada para otros fines diferentes a
+            este.</li>
+    </ul>
+    <h4>Uso del Servicio</h4>
+    <ul style="list-style-type: none;">
+        <li>2.1. Comprara! te permite comparar precios de productos ofrecidos por diferentes proveedores. La información
+            de precios y productos es proporcionada por terceros y no garantizamos su exactitud y/o disponibilidad.</li>
+        <li>2.2. Eres responsable de la forma en que utilizas la información proporcionada por Comprara!. No nos hacemos
+            responsables por decisiones o acciones tomadas en base a dicha información.</li>
+    </ul>
+    <h4>Propiedad Intelectual</h4>
+    <ul style="list-style-type: none;">
+        <li>3.1. Todos los derechos de propiedad intelectual relacionados con Comprara! y su contenido (excepto los
+            productos de terceros) son propiedad de Comprara!, no se te otorga ningún derecho o licencia sobre nuestra
+            propiedad intelectual.</li>
+    </ul>
+    <h4>Conducta del Usuario</h4>
+    <ul style="list-style-type: none;">
+        <li>4.1. Al utilizar nuestro servicio, te comprometes a no realizar las siguientes acciones:</li>
+        <ul style="list-style-type: none;">
+            <li>a) Utilizar Comprara! para cualquier propósito ilegal.</li>
+            <li>b) Publicar contenido ofensivo o difamatorio que viole los derechos de terceros.</li>
+            <li>d) Interrumpir el correcto funcionamiento de Comprara!</li>
+        </ul>
+    </ul>
+    <h4>Modificaciones y Terminación</h4>
+    <ul style="list-style-type: none;">
+        <li>5.1. Nos reservamos el derecho de modificar Comprara! en cualquier momento sin previo aviso.
+        </li>
+        <li>5.2. Podemos modificar estos términos y condiciones en cualquier momento. Te notificaremos de cualquier
+            cambio importante. Si continúas utilizando nuestro servicio después de dichas modificaciones, se considerará
+            que aceptas los términos actualizados.</li>
+    </ul>
+</div>
+{% include 'footer.html' %}

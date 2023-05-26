@@ -117,6 +117,9 @@ def complete_login(request):
 def register(request):
     return render(request, 'register.html')
 
+def termsandconditions(request):
+    return render(request, 'terms.html')
+
 def complete_registration(request):
     if request.POST.get('password') == request.POST.get('passwordConfirm'):
         user = User(username = request.POST['username'], password = request.POST['password'], inventory = [])
