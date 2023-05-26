@@ -146,6 +146,13 @@ def filter(request):
     
     return render(request, 'search.html', {'products':fproducts})
 
+def clear_filter(request):
+    try:
+        fproducts = list_products
+    except:
+        fproducts = []
+    return render(request, 'search.html', {'products':fproducts})
+
 def sort_ascending(request):
     try:
         sproducts = list_products
@@ -165,6 +172,37 @@ def sort_descending(request):
     sproducts = sorted(sproducts, key=lambda x: x[1], reverse=True)
 
     return render(request, 'search.html', {'products':sproducts})
+
+def byseller(request):
+    try:
+        fproducts = list_products
+    except:
+        fproducts = []
+    filterbys = []
+
+    if request.method == 'POST':
+        if 'exito' in request.POST:
+            try:
+                filterbys += [product for product in fproducts if product[-1] == "Éxito"]
+            except:
+                pass
+        if 'metro' in request.POST:
+            try:
+                filterbys += [product for product in fproducts if product[-1] == "Metro"]
+            except:
+                pass
+        if 'jumbo' in request.POST:
+            try:
+                filterbys += [product for product in fproducts if product[-1] == "Jumbo"]
+            except:
+                pass
+        if 'olimpica' in request.POST:
+            try:
+                filterbys += [product for product in fproducts if product[-1] == "Olímpica"]
+            except:
+                pass
+    
+    return render(request, 'search.html', {'products':filterbys})
 
 def save_product(request):
     if request.method == 'POST':

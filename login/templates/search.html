@@ -32,18 +32,50 @@
               <p style="color: #c76650; font-weight: bold;">
                 Ordenar
               </p>
-              <a style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_descending' %}"
+              <a class="px-3" style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_descending' %}"
                 name="sort" role="button" onmouseover="this.style.textColor='#d79f54';"
                 onmouseout="this.style.color='#644321';">
                 De mayor a menor
               </a>
-              <p> </p>
-              <a style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_ascending' %}"
+              <p></p>
+              <a class="px-3" style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_ascending' %}"
                 name="sort" role="button" onmouseover="this.style.textColor='#d79f54';"
                 onmouseout="this.style.color='#644321';">
                 De menor a mayor
               </a>
             </div>
+          </div>
+          <div class="row"
+            style="background-color: #f7e8d7;border:#644321 solid ; border-radius: 20px; margin: 0.5%; margin-bottom: 5%; width: 100%; height: max-content;">
+            <div style="padding: 5%;">
+              <p style="color: #c76650; font-weight: bold;">
+                Filtrar por tienda
+              </p>
+              <form action="{% url 'byseller' %}" method="POST">
+                {% csrf_token %}
+                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox" name="exito">
+                  Éxito</label><br>
+                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox" name="metro">
+                  Metro</label><br>
+                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox" name="jumbo">
+                  Jumbo</label><br>
+                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox"
+                    name="olimpica"> Olímpica</label><br>
+                <button type="submit" class="btn"
+                  style="background-color:#644321; font-weight: bold; width: 100%; color: white; margin-top: 5%;"
+                  onmouseover="this.style.backgroundColor='#d79f54';"
+                  onmouseout="this.style.backgroundColor='#644321';">Aplicar</button>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <form action="{% url 'clear_filter' %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn"
+                style="background-color:#c76650; font-weight: bold; width: 100%; color: white;"
+                onmouseover="this.style.backgroundColor='#d79f54';"
+                onmouseout="this.style.backgroundColor='#c76650';">Limpiar filtro</button>
+            </form>
           </div>
         </div>
       </div>
