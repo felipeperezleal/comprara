@@ -1,7 +1,7 @@
 {% load static %}
 {% include "base.html" %}
 <title>Registrarme</title>
-<div>
+<div style="display: flex; flex-direction: column; min-height: 100vh;">
   <a class="fs-4" href="{% url 'home' %}"
     style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;"
     onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
@@ -30,8 +30,10 @@
         required>
     </div>
     <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="termsCheck" name="termsCheck" style="background-color: #644321;" required>
-      <label class="form-check-label" for="termsCheck" style="color: #644321;">He leído y acepto los <a href="{% url 'termsandconditions' %}" style="color:#d79f54;"> términos y condiciones</a></label>
+      <input type="checkbox" class="form-check-input" id="termsCheck" name="termsCheck"
+        style="background-color: #644321;" required>
+      <label class="form-check-label" for="termsCheck" style="color: #644321;">He leído y acepto los <a
+          href="{% url 'termsandconditions' %}" target="_blank" style="color:#d79f54;">términos y condiciones</a></label>
     </div>
     {% if messages %}
     <ul class="messages">
