@@ -16,7 +16,7 @@
               <form action="{% url 'filter' %}" method="POST">
                 {% csrf_token %}
                 <input class="form-control me-2" placeholder="Desde..." name="min_price" type="number"
-                  aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
+                  aria-label="Search" min="0" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
                 <input class="form-control me-2" placeholder="Hasta..." name="max_price" type="number"
                   aria-label="Search" style="width: 100%; border:2px solid #644321; margin: 5% auto;" required>
                 <button type="submit" class="btn"
@@ -32,15 +32,15 @@
               <p style="color: #c76650; font-weight: bold;">
                 Ordenar
               </p>
-              <a class="px-3" style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_descending' %}"
-                name="sort" role="button" onmouseover="this.style.textColor='#d79f54';"
-                onmouseout="this.style.color='#644321';">
+              <a class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"
+                href="{% url 'sort_descending' %}" name="sort" role="button"
+                onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
                 De mayor a menor
               </a>
               <p></p>
-              <a class="px-3" style="color: #644321; font-weight:bold; font-size: medium;" href="{% url 'sort_ascending' %}"
-                name="sort" role="button" onmouseover="this.style.textColor='#d79f54';"
-                onmouseout="this.style.color='#644321';">
+              <a class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"
+                href="{% url 'sort_ascending' %}" name="sort" role="button"
+                onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
                 De menor a mayor
               </a>
             </div>
@@ -53,11 +53,14 @@
               </p>
               <form action="{% url 'byseller' %}" method="POST">
                 {% csrf_token %}
-                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox" name="exito">
+                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox"
+                    name="exito">
                   Éxito</label><br>
-                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox" name="metro">
+                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox"
+                    name="metro">
                   Metro</label><br>
-                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox" name="jumbo">
+                <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox"
+                    name="jumbo">
                   Jumbo</label><br>
                 <label class="px-3" style="color: #644321; font-weight:bold; font-size: medium;"><input type="checkbox"
                     name="olimpica"> Olímpica</label><br>
@@ -109,6 +112,7 @@
                     Ir a la tienda
                   </button>
                 </form>
+                {% if user.is_authenticated %}
                 <form action="{% url 'save_product' %}" method="POST">
                   {% csrf_token %}
                   <input type="hidden" name="product_name" value="{{ product.0 }}">
@@ -123,6 +127,16 @@
                     Guardar
                   </button>
                 </form>
+                {% else %}
+                <form action="{% url 'login' %}">
+                  <button type="submit" class="btn"
+                    style="background-color:#c76650; padding: 10%; font-weight: bold; width: 200px; color: white; font-size: small;"
+                    onmouseover="this.style.backgroundColor='#d79f54';"
+                    onmouseout="this.style.backgroundColor='#c76650';">
+                    Inicia sesión para guardar este producto
+                  </button>
+                </form>
+                {% endif %}
               </div>
             </div>
           </div>
