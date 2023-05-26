@@ -102,6 +102,7 @@ def complete_login(request):
         # Si no está, error
         except:
             messages.error(request, 'Este usuario no existe')
+            return render(request, 'login.html')
         
         # Autenticar usuario
         user = authenticate(request, username=username, password=password)
@@ -111,7 +112,7 @@ def complete_login(request):
             login(request, user)
             return redirect('../../')
         else:
-            messages.error(request, 'Usuario o contraseña erróneos')
+            messages.error(request, 'Contraseña incorrecta')
             return render(request, 'login.html')
 
 def register(request):
