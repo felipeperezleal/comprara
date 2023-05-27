@@ -1,16 +1,26 @@
 from email.message import EmailMessage
 import smtplib
-import uuid
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
 # Importamos el modelo de usuario que ya viene con Django
 from .models import CustomUser as User
 # Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
-from django.template.loader import get_template
 from bs4 import BeautifulSoup as bs
-import requests, json, random
+import json, random, httpx
 
+#Making webscraping kinda faster
+user_agent_list = [ 
+'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', 
+'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 
+'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15', 
+]
+user_agent = random.choice(user_agent_list)
+headers = {'User-Agent': user_agent}
+cookies = {'session_id': '1234567890'}
+timeout = httpx.Timeout(5.0)
+r = httpx.Client(headers=headers, cookies=cookies, timeout=timeout)
+    
 def search(request):
     query = request.POST.get('search_string').replace(' ', '%20')
     global list_products
@@ -33,16 +43,9 @@ def search(request):
     return render(request, 'search.html', {'products':list_products})
 
 def scraping(store, url):
-    user_agent_list = [ 
-	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', 
-	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 
-	'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15', 
-    ]
-    user_agent = random.choice(user_agent_list)
-    r = requests.get(url, headers={"User-Agent": user_agent})
-    soup = bs(r.content, 'xml')
-    script = soup.findAll('script', {'type':'application/ld+json'})
-    data = json.loads(script[2].text)
+    soup = bs(r.get(url).content, 'xml')
+    script = soup.find_all('script', {'type': 'application/ld+json'})[2]
+    data = json.loads(script.text)
     products = []
     for product in data['itemListElement']:
         products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], store])
