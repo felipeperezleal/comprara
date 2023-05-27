@@ -12,84 +12,41 @@ from bs4 import BeautifulSoup as bs
 import requests, json, random
 
 def search(request):
-    search_string = request.POST.get('search_string').replace(' ', '%20')
+    query = request.POST.get('search_string').replace(' ', '%20')
     global list_products
     list_products = []
-    try:
-        list_products.extend(exito_sc(search_string))
-    except:
-        pass
-    try:
-        list_products.extend(metro_sc(search_string))
-    except:
-        pass
-    try:
-        list_products.extend(jumbo_sc(search_string))
-    except:
-        pass
-    try:
-        list_products.extend(olimpica_sc(search_string))
-    except:
-        pass
+    stores = {
+        'Metro':f'https://www.tiendasmetro.co/{query}?_q={query}&map=ft', 
+        'Jumbo':f'https://www.tiendasjumbo.co/{query}?_q={query}&map=ft', 
+        'Éxito':f'https://www.exito.com/{query}?_q={query}&map=ft', 
+        'Olímpica':f'https://www.olimpica.com/{query}?_q={query}&map=ft', 
+        }
 
+    for store, url in stores.items():
+        try:
+            products = scraping(store, url)
+            list_products.extend(products)
+        except:
+            pass
     random.shuffle(list_products)
 
     return render(request, 'search.html', {'products':list_products})
 
-def metro_sc(query):
-    url = f'https://www.tiendasmetro.co/{query}?_q={query}&map=ft'
-    #Replace User-Agent header (this protects Scraping by getting banned from the website)
+def scraping(store, url):
     user_agent_list = [ 
 	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', 
 	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 
 	'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15', 
     ]
-    for i in range(1,4):
-        user_agent = random.choice(user_agent_list)
-        
+    user_agent = random.choice(user_agent_list)
     r = requests.get(url, headers={"User-Agent": user_agent})
-    soup = bs(r.content, 'html.parser')
+    soup = bs(r.content, 'xml')
     script = soup.findAll('script', {'type':'application/ld+json'})
     data = json.loads(script[2].text)
     products = []
     for product in data['itemListElement']:
-        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Metro"])
-    return products
+        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], store])
 
-def exito_sc(query):
-    url = f'https://www.exito.com/{query}?_q={query}&map=ft'
-    #Replace User-Agent header (this protects Scraping by getting banned from the website)
-    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
-    soup = bs(r.content, 'html.parser')
-    script = soup.findAll('script', {'type':'application/ld+json'})
-    data = json.loads(script[2].text)
-    products = []
-    for product in data['itemListElement']:
-        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Éxito"])
-    return products
-
-def jumbo_sc(query):
-    url = f'https://www.tiendasjumbo.co/{query}?_q={query}&map=ft'
-    #Replace User-Agent header (this protects Scraping by getting banned from the website)
-    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
-    soup = bs(r.content, 'html.parser')
-    script = soup.findAll('script', {'type':'application/ld+json'})
-    data = json.loads(script[2].text)
-    products = []
-    for product in data['itemListElement']:
-        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Jumbo"])
-    return products
-
-def olimpica_sc(query):
-    url = f'https://www.olimpica.com/{query}?_q={query}&map=ft'
-    #Replace User-Agent header (this protects Scraping by getting banned from the website)
-    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 OPR/98.0.0.0"})
-    soup = bs(r.content, 'html.parser')
-    script = soup.findAll('script', {'type':'application/ld+json'})
-    data = json.loads(script[2].text)
-    products = []
-    for product in data['itemListElement']:
-        products.append([product['item']['name'], product['item']['offers']['lowPrice'], product['item']['image'], product['item']['@id'], "Olímpica"])
     return products
 
 def login_view(request):
