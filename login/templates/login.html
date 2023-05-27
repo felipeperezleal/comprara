@@ -14,7 +14,7 @@
     {% csrf_token %}
     <p class="fs-1" style="color: #644321; font-weight:bolder; padding: 5%;">Iniciar Sesión</p>
     <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Correo electrónico" name="username"
+      <input type="email" class="form-control" placeholder="Correo electrónico" name="username"
         style="background-color: #f7e8d7; border:2px solid #644321; padding-top: 5%; padding-bottom: 5%; width: 320px;"
         required>
     </div>
@@ -33,6 +33,8 @@
     <button type="submit" class="btn py-3 px-5" style="background-color:#644321; color: white;"
       onmouseover="this.style.backgroundColor='#d79f54';"
       onmouseout="this.style.backgroundColor='#644321';">Ingresar</button>
+    <p class="fs-5" style="color: #644321; font-weight:bold; padding-top: 5%;"><a
+        href="{% url 'reset_password' %}" style="color:#644321;">Olvidé mi contraseña</a></p>
     <p class="fs-5" style="color: #644321; font-weight:bold; padding-top: 5%;">¿No tienes una cuenta? <a
         href="{% url 'register' %}" style="color:#d79f54;">Regístrate aquí</a></p>
   </form>

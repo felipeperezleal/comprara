@@ -5,6 +5,9 @@ from user.views import profile, change_password, remove_product
 
 urlpatterns = [
     path('login/', views.login_view, name="login"),
+    path('login/reset-password/', views.reset_password, name="reset_password"),
+    path('login/reset-password/email-sent/', views.send_email, name="send_email"),
+    path('login/reset-password/new-password/', views.new_password, name="new_password"),
     path('logout/', views.logout_request, name="logout"),
     path('register/', views.register, name="register"),
     path('terms-conditions/', views.termsandconditions, name="termsandconditions"),

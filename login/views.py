@@ -1,9 +1,13 @@
-from django.shortcuts import render, redirect
+from email.message import EmailMessage
+import smtplib
+import uuid
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 # Importamos el modelo de usuario que ya viene con Django
 from .models import CustomUser as User
 # Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
+from django.template.loader import get_template
 from bs4 import BeautifulSoup as bs
 import requests, json, random
 
@@ -216,3 +220,41 @@ def save_product(request):
         user.save()
     lproducts = list_products
     return render(request, 'search.html', {'products':lproducts})
+
+def reset_password(request):
+    return render(request, './reset_password/reset_password.html')
+
+def send_email(request):
+    admin = "compraraunal@outlook.com"
+    global receiver
+    receiver = request.POST.get('username')
+    email = EmailMessage()
+    email["From"] = admin
+    email["To"] = receiver
+    email["Subject"] = "Comprara! | Recuperar contraseña"
+    reset_link = request.build_absolute_uri(f"../new-password")
+    email.set_content("Haz click en el siguiente enlace para recuperar tu contraseña: " + reset_link)
+    smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
+    smtp.starttls()
+    smtp.login(admin, "Comprara2023")
+    smtp.sendmail(admin, receiver, email.as_string())
+    smtp.quit()
+    return render(request, './reset_password/email_sent.html')
+
+def new_password(request):
+    try:
+        if request.method == 'POST':
+            pswd1 = request.POST.get('pswd1')
+            pswd2 = request.POST.get('pswd2')
+            if pswd1 == pswd2:
+                user = User.objects.get(username=receiver)
+                user.set_password(pswd1)
+                user.save()
+                messages.success(request, 'Contraseña actualizada')
+                return redirect('login')
+            else:
+                messages.error(request, 'Las contraseñas no coinciden')
+    except:
+        pass
+
+    return render(request, './reset_password/new_password.html')

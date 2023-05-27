@@ -28,16 +28,15 @@
           <form action="{% url 'change_password' %}" method="POST">
             {% csrf_token %}
             <div class="row">
-              <input class="form-control me-2" placeholder="Nueva contraseña" name="pswd1"
+              <input type="password" class="form-control me-2" placeholder="Nueva contraseña" name="pswd1" minlength="8"
                 style=" border:2px solid #644321; margin: 5px auto;" required>
             </div>
             <div class="row">
-              <input class="form-control me-2" placeholder="Confirmar contraseña" name="pswd2"
-                style="border:2px solid #644321; margin: 5px auto;" required>
+              <input type="password" class="form-control me-2" placeholder="Confirmar contraseña" name="pswd2"
+                minlength="8" style="border:2px solid #644321; margin: 5px auto;" required>
             </div>
             <div class="row">
-              <button type="submit" class="btn"
-                style="background-color:#644321; color: white; margin: 5px auto;"
+              <button type="submit" class="btn" style="background-color:#644321; color: white; margin: 5px auto;"
                 onmouseover="this.style.backgroundColor='#d79f54';"
                 onmouseout="this.style.backgroundColor='#644321';">Cambiar contraseña</button>
             </div>

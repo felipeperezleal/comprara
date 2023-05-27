@@ -1,0 +1,17 @@
+{% include 'base.html' %}
+{% load static %}
+
+<div style="display: flex; flex-direction: column; min-height: 100vh;">
+  <a class="fs-4" href="{% url 'login' %}"
+    style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;"
+    onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
+    <img src="{% static 'left-arrow.png' %}" alt="left-arrow" style="height: 40px; width: auto;">
+    Volver
+  </a>
+  <div class="text-center">
+    <h2 class="py-5" style="color: #644321; font-weight: bold;">Recuperar contraseña</h2>
+    <h5 style="color: #644321; font-weight: normal;">Se te ha enviado un correo indicándote las instrucciones para recuperar tu contraseña.</h5>
+  </div>
+</div>
+
+{% include 'footer.html' %}
