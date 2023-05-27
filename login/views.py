@@ -18,7 +18,7 @@ user_agent_list = [
 user_agent = random.choice(user_agent_list)
 headers = {'User-Agent': user_agent}
 cookies = {'session_id': '1234567890'}
-timeout = httpx.Timeout(5.0)
+timeout = httpx.Timeout(1000000.0)
 r = httpx.Client(headers=headers, cookies=cookies, timeout=timeout)
     
 def search(request):
