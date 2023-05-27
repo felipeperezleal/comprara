@@ -126,15 +126,19 @@ def termsandconditions(request):
     return render(request, 'terms.html')
 
 def complete_registration(request):
-    if request.POST.get('password') == request.POST.get('passwordConfirm'):
-        user = User(username = request.POST['username'], password = request.POST['password'], inventory = [])
-        user.set_password(request.POST['password'])
-        user.save()
-        return redirect('login')
-    else:
-        messages.error(request, 'Las contraseñas no coinciden')
-        return render(request, 'register.html')
-
+    try:
+        if request.POST.get('password') == request.POST.get('passwordConfirm'):
+            user = User(username = request.POST['username'], password = request.POST['password'], inventory = [])
+            user.set_password(request.POST['password'])
+            user.save()
+            return redirect('login')
+        else:
+            messages.error(request, 'Las contraseñas no coinciden')
+            return render(request, 'register.html')
+    except:
+        messages.error(request, 'Ya existe un usuario registrado con ese correo')
+        return render(request, 'login.html')
+    
 def logout_request(request):
     logout(request)    
     return redirect('../../')
