@@ -1,10 +1,16 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from login.models import CustomUser
 
 # Create your views here.
 def profile(request):
-    return render(request, 'profile.html')
+    users = list(CustomUser.objects.all())
+    print(users[0].is_staff)
+    context = {
+        'users': users
+    }
+    return render(request, 'profile.html', context)
 
 @login_required
 def change_password(request):
@@ -29,4 +35,14 @@ def remove_product(request):
         user = request.user
         user.inventory = [product for product in user.inventory if product[0] != product_name]
         user.save()
+        return redirect('profile')
+    
+def remove_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        if username == request.user.username:
+            messages.error(request, 'No puedes eliminar tu propia cuenta')
+            return redirect('profile')
+        user = CustomUser.objects.get(username=username)
+        user.delete()
         return redirect('profile')

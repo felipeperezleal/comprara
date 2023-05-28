@@ -52,6 +52,7 @@
         </div>
       </div>
     </div>
+    {% if not user.is_staff %}
     <p class="fs-2" style="color: #644321; font-weight:bolder;">
       Productos guardados
     </p>
@@ -98,6 +99,45 @@
       </div>
     </div>
     {% endfor %}
+    {% else %}
+    <p class="fs-2" style="color: #644321; font-weight:bolder;">
+      Lista de usuarios registrados
+    </p>
+    {% for user in users %}
+    <div class="container-fluid text-center my-2"
+      style="border:#644321 solid ; border-radius: 20px; background-color: #fff;">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="col d-flex flex-column align-items-center">
+            <div>
+              <p style="color: #c76650; font-weight: bold;">{{ user.is_staff }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="col d-flex flex-column align-items-center">
+            <div>
+              <p style="color: #c76650; font-weight: bold;">{{ user.username }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex flex-column align-items-center">
+            <form action="{% url 'remove_user' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="username" value="{{ user.username }}">
+              <button type="submit" class="btn py-4 my-1"
+                style="background-color:#c76650; font-weight: bold; width: 200px; color: white;"
+                onmouseover="this.style.backgroundColor='#d79f54';" onmouseout="this.style.backgroundColor='#c76650';">
+                Borrar usuario
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
   </div>
 </div>
 {% include 'footer.html' %}
