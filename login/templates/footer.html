@@ -37,17 +37,20 @@
                                     <p>Ingresa la cantidad con la que te gustaría apoyarnos:</p>
                                     <div class="form-group">
                                         <label hidden="true" for="amount"></label>
-                                        <input type="number" name="amount" placeholder="Ingresa el valor sin separadores decimales (COP)" id="amount" class="form-control" min="0" required>
+                                        <input type="number" name="amount"
+                                            placeholder="Ingresa el valor sin separadores decimales (COP)" id="amount"
+                                            class="form-control" min="0" required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn" data-bs-dismiss="modal"
                                         style="background-color:#9d8b78; font-weight: bold;color: white;"
                                         onmouseover="this.style.backgroundColor='#d79f54';"
-                                        onmouseout="this.style.backgroundColor='#9d8b78	';" onclick="event.preventDefault()">Cancelar</button>
-                                    <button type="submit" class="btn"
+                                        onmouseout="this.style.backgroundColor='#9d8b78	';"
+                                        onclick="event.preventDefault()">Cancelar</button>
+                                    <button type="submit" class="btn" data-bs-dismiss="modal"
                                         style="background-color:#644321; font-weight: bold;color: white;"
-                                        onmouseover="this.style.backgroundColor='#d79f54';"
+                                        formtarget="_blank" onmouseover="this.style.backgroundColor='#d79f54';"
                                         onmouseout="this.style.backgroundColor='#644321';">Apóyanos!</button>
                                 </div>
                             </form>
@@ -66,8 +69,11 @@
             <h5 style="color: white;">Meet our team!</h5>
             <ul class="col" style="list-style-type:none; padding: 0;">
                 <li class="nav-item">
-                    <a href="http://github.com/felipeperezleal" target="_blank" style="color: white; text-decoration: none;">
-                        <p class="nav-link px-2" onmouseover="this.style.color='#9d8b78';" onmouseout="this.style.color='white';">Sebastián Felipe Pérez Leal<span> &#128640; </span></p>
+                    <a href="http://github.com/felipeperezleal" target="_blank"
+                        style="color: white; text-decoration: none;">
+                        <p class="nav-link px-2" onmouseover="this.style.color='#9d8b78';"
+                            onmouseout="this.style.color='white';">Sebastián Felipe Pérez Leal<span> &#128640; </span>
+                        </p>
                     </a>
                 </li>
                 <li class="nav-item">

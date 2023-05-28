@@ -1,7 +1,8 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 from home.views import index, complete_donation
 from user.views import profile, change_password, remove_product, remove_user
+from login.api.router import router_user
 
 urlpatterns = [
     path('login/', views.login_view, name="login"),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('profile/remove-user', remove_user, name="remove_user"),
     path('donate/', complete_donation, name="donate"),
     path('', index, name="home"),
+    path('api/', include(router_user.urls)),
 ]
