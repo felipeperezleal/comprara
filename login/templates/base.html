@@ -42,13 +42,13 @@
         <ul class="navbar-nav">
           {% if user.is_authenticated %}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" style="color: #644321; font-weight:bold; font-size: x-large;" href="#"
-              role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            <button class="nav-link dropdown-toggle" style="color: #644321; font-weight:bold; font-size: x-large;"
+              href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
               onmouseover="this.style.textColor='#d79f54';" onmouseout="this.style.color='#644321';">
               <img src="{% static 'profile.png' %}" alt="Profile" style="height: 35px; width: auto;" />
               {{user.username}}
-            </a>
-            <ul class="dropdown-menu">
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="{% url 'profile' %}"
                   style="color: #644321; font-weight:bold; font-size: large; text-align: center;"
                   onmousedown="this.style.backgroundColor='#9d8b78';" onmouseup="this.style.backgroundColor='#fff';">
