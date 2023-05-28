@@ -2,15 +2,10 @@ from email.message import EmailMessage
 import smtplib
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
-# Importamos el modelo de usuario que ya viene con Django
 from .models import CustomUser as User
-
-# Importamos autenticación, login y logout de Django
 from django.contrib.auth import authenticate, login, logout
 from bs4 import BeautifulSoup as bs
-import json, random, httpx
-
+import json, random, requests
 
 def search(request):
     try:
@@ -19,14 +14,6 @@ def search(request):
         query = ""
     global list_products
     list_products = []
-    #Making webscraping kinda faster
-    user_agent_list = [ 
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', 
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15', 
-    ]
-    user_agent = random.choice(user_agent_list)
-    r = httpx.Client(headers={'User-Agent': user_agent})
     stores = {
         "Metro": f"https://www.tiendasmetro.co/{query}?_q={query}&map=ft",
         "Jumbo": f"https://www.tiendasjumbo.co/{query}?_q={query}&map=ft",
@@ -36,7 +23,7 @@ def search(request):
 
     for store, url in stores.items():
         try:
-            products = scraping(store, url, r)
+            products = scraping(store, url)
             list_products.extend(products)
         except:
             pass
@@ -45,8 +32,15 @@ def search(request):
     return render(request, "search.html", {"products": list_products})
 
 
-def scraping(store, url, r):
-    soup = bs(r.get(url).content, "xml")
+def scraping(store, url):
+    user_agent_list = [ 
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', 
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Safari/605.1.15', 
+    ]
+    user_agent = random.choice(user_agent_list)
+    r = requests.Session()
+    soup = bs(r.get(url).content, "lxml")
     script = soup.find_all("script", {"type": "application/ld+json"})[2]
     data = json.loads(script.text)
     products = []
