@@ -6,6 +6,7 @@ from .models import CustomUser as User
 from django.contrib.auth import authenticate, login, logout
 from bs4 import BeautifulSoup as bs
 import json, random, requests
+from concurrent.futures import ThreadPoolExecutor
 
 def search(request):
     try:
@@ -21,35 +22,36 @@ def search(request):
         "Olímpica": f"https://www.olimpica.com/{query}?_q={query}&map=ft",
     }
 
-    for store, url in stores.items():
-        try:
-            products = scraping(store, url)
+    with ThreadPoolExecutor() as executor:
+        results = executor.map(scraping, stores.keys(), stores.values())
+
+    for store, products in results:
+        if products is not None:
             list_products.extend(products)
-        except:
-            pass
-    random.shuffle(list_products)
 
     return render(request, "search.html", {"products": list_products})
 
 
 def scraping(store, url):
-    r = requests.Session()
-    soup = bs(r.get(url).content, "lxml")
-    script = soup.find_all("script", {"type": "application/ld+json"})[2]
-    data = json.loads(script.text)
-    products = []
-    for product in data["itemListElement"]:
-        products.append(
-            [
-                product["item"]["name"],
-                product["item"]["offers"]["lowPrice"],
-                product["item"]["image"],
-                product["item"]["@id"],
-                store,
-            ]
-        )
-
-    return products
+    try:
+        session = requests.Session()
+        soup = bs(session.get(url).content, "lxml")
+        script = soup.find_all("script", type="application/ld+json")[2]
+        data = json.loads(script.text)
+        products = []
+        for product in data["itemListElement"]:
+            products.append(
+                [
+                    product["item"]["name"],
+                    product["item"]["offers"]["lowPrice"],
+                    product["item"]["image"],
+                    product["item"]["@id"],
+                    store,
+                ]
+            )
+        return store, products
+    except:
+        return store, None
 
 
 def login_view(request):
