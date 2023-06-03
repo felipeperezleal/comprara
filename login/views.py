@@ -7,19 +7,25 @@ from django.contrib.auth import authenticate, login, logout
 from bs4 import BeautifulSoup as bs
 import json, random, requests
 from concurrent.futures import ThreadPoolExecutor
+import unidecode
 
 def search(request):
     try:
-        query = request.POST.get("search_string").replace(" ", "%20")
+        query = request.POST.get("search_string").replace(' ', '%20')
+        query = unidecode.unidecode(query)
     except:
         query = ""
+
+    # DEBUG
+    print(f"QUERY STRING: {query}")
+
     global list_products
     list_products = []
     stores = {
-        "Metro": f"https://www.tiendasmetro.co/{query}?_q={query}&map=ft",
-        "Jumbo": f"https://www.tiendasjumbo.co/{query}?_q={query}&map=ft",
-        "Éxito": f"https://www.exito.com/{query}?_q={query}&map=ft",
-        "Olímpica": f"https://www.olimpica.com/{query}?_q={query}&map=ft",
+        "Metro": f"https://www.tiendasmetro.co/{query}",
+        "Jumbo": f"https://www.tiendasjumbo.co/{query}",
+        "Éxito": f"https://www.exito.com/{query}",
+        "Olímpica": f"https://www.olimpica.com/{query}",
     }
 
     with ThreadPoolExecutor() as executor:
