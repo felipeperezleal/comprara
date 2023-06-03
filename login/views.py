@@ -5,13 +5,14 @@ from django.contrib import messages
 from .models import CustomUser as User
 from django.contrib.auth import authenticate, login, logout
 from bs4 import BeautifulSoup as bs
-import json, random, requests
+import json, requests
 from concurrent.futures import ThreadPoolExecutor
 import unidecode
 
+
 def search(request):
     try:
-        query = request.POST.get("search_string").replace(' ', '%20')
+        query = request.POST.get("search_string").split(" ")[0]
         query = unidecode.unidecode(query)
     except:
         query = ""
