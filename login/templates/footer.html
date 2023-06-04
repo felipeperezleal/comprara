@@ -57,8 +57,47 @@
                         </div>
                     </div>
                 </div>
-                <li class="nav-item mb-2"><a href="{% url 'termsandconditions' %}" style="color:white;"> Términos y
-                        condiciones</a></li>
+                <li class="nav-item mb-2">
+                    <a style="color:white; cursor: pointer; text-decoration: underline;" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Sobre nosotros</a>
+
+                    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                        aria-labelledby="offcanvasBottomLabel" style="background-color: #644321;">
+                        <div class="offcanvas-header">
+                            <h5 style="color: #f7e8d7;" class="offcanvas-title" id="offcanvasBottomLabel">Sobre nosotros
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body small">
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 style="color: #f7e8d7;">Nuestra misión</h2>
+                                        <p style="color: #f7e8d7;">Buscamos facilitar la toma de decisiones al hacer una
+                                            compra, proporcionando
+                                            información de
+                                            precios precisa y actualizada.
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <h2 style="color:#f7e8d7;">Nuestra visión</h2>
+                                        <p style="color: #f7e8d7;">Convertirnos en la principal fuente de referencia
+                                            para las personas al
+                                            momento de buscar
+                                            productos online, asegurándonos de entregar la mejor información al hacer
+                                            una compra.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="{% url 'termsandconditions' %}" style="color:white;"> Términos y
+                        condiciones</a>
+                </li>
                 <li class="nav-item mb-2">
                     <p class="nav-link px-2" style="color: white;">© 2023 Comprara! Todos los derechos reservados</p>
                 </li>
@@ -66,7 +105,54 @@
         </div>
 
         <div class="col text-center">
-            <h5 style="color: white;">Meet our team!</h5>
+            <ul class="col" style="list-style-type:none; padding: 0;">
+                <a class="h5" style="color:white; cursor: pointer; text-decoration: none;" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasMeetOurTeam" aria-controls="offcanvasBottom">Conócenos!</a>
+
+                <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasMeetOurTeam"
+                    aria-labelledby="offcanvasBottomLabel" style="background-color: #644321;">
+                    <div class="offcanvas-header justify-content-end">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col">
+                                    <img class="rounded-circle" src="https://avatars.githubusercontent.com/u/62476135?v=4" alt="Felipe" style="height: 50px;">
+                                    <h4 style="color: #f7e8d7;">Sebastián Felipe Pérez Leal</h4>
+                                    <p style="color: #f7e8d7;"> Hola, soy estudiante de Ingeniería de Sistemas y
+                                        Computación en la
+                                        Universidad Nacional de Colombia. Me gusta la programación, el
+                                        desarrollo móvil y los videojuegos :D
+                                    </p>
+                                    <p style="color: #f7e8d7;"> Skills: Python (Django), Dart (Flutter), Java, Kotlin,
+                                        C++.
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <h4 style="color:#f7e8d7;">Juan Diego Lozano Colmenares</h4>
+                                    <p style="color: #f7e8d7;">Estudiante de Ingeniería de Sistemas y Computación en la
+                                        Universidad Nacional de Colombia
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <h4 style="color:#f7e8d7;">Juan David Gómez Suárez</h4>
+                                    <p style="color: #f7e8d7;">Estudiante de Ingeniería de Sistemas y Computación en la
+                                        Universidad Nacional de Colombia
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <h4 style="color:#f7e8d7;">Juan Felipe Fontecha Vásquez</h4>
+                                    <p style="color: #f7e8d7;">Estudiante de Ingeniería de Sistemas y Computación en la
+                                        Universidad Nacional de Colombia
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
             <ul class="col" style="list-style-type:none; padding: 0;">
                 <li class="nav-item">
                     <a href="http://github.com/felipeperezleal" target="_blank"

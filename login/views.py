@@ -17,9 +17,6 @@ def search(request):
     except:
         query = ""
 
-    # DEBUG
-    print(f"QUERY STRING: {query}")
-
     global list_products
     list_products = []
     stores = {
