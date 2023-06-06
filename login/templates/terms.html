@@ -1,61 +1,121 @@
 {% load static %}
 {% include 'base.html' %}
-<div style="display: flex; flex-direction: column; min-height: 100vh;">
+<div style="display: flex; flex-direction: column; min-height: 100vh; width: 100%;">
     <a class="fs-4" href="{% url 'home' %}"
         style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;"
         onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
-        <img src="{% static 'left-arrow.png' %}" alt="left-arrow!" style="height: 40px; width: auto;">
+        <img src="{% static 'left-arrow.png' %}" alt="left-arrow" style="height: 40px; width: auto;">
         Inicio
     </a>
-    <div class="m-4 p-4" style="border:#644321 solid ; border-radius: 20px; background-color: #fff;">
-        <h2>Términos y Condiciones de Uso</h2>
-        <p>Al registrarte y utilizar los servicios de Comprara! aceptas cumplir con los siguientes términos y
-            condiciones:
-        </p>
-        <h4>Registro y Privacidad</h4>
-        <ul style="list-style-type: none;">
-            <li>1.1. Al registrarte en Comprara! deberás proporcionar un correo electrónico válido y una contraseña. Te
-                comprometes a mantener la confidencialidad de tu cuenta y serás el único responsable de todas las
-                actividades que ocurran bajo tu cuenta.</li>
-            <li>1.2. Recolectaremos y almacenaremos tu correo electrónico con el propósito de gestionar tu cuenta y
-                brindarte acceso a nuestro servicio. Tu información personal no será utilizada para otros fines
-                diferentes a este.</li>
-        </ul>
-        <h4>Uso del Servicio</h4>
-        <ul style="list-style-type: none;">
-            <li>2.1. Comprara! te permite comparar precios de productos ofrecidos por diferentes proveedores. La
-                información
-                de precios y productos es proporcionada por terceros y no garantizamos su exactitud y/o disponibilidad.
-            </li>
-            <li>2.2. Eres responsable de la forma en que utilizas la información proporcionada por Comprara!. No nos
-                hacemos
-                responsables por decisiones o acciones tomadas en base a dicha información.</li>
-        </ul>
-        <h4>Propiedad Intelectual</h4>
-        <ul style="list-style-type: none;">
-            <li>3.1. Todos los derechos de propiedad intelectual relacionados con Comprara! y su contenido (excepto los
-                productos de terceros) son propiedad de Comprara!, no se te otorga ningún derecho o licencia sobre
-                nuestra
-                propiedad intelectual.</li>
-        </ul>
-        <h4>Conducta del Usuario</h4>
-        <ul style="list-style-type: none;">
-            <li>4.1. Al utilizar nuestro servicio, te comprometes a no realizar las siguientes acciones:</li>
-            <ul style="list-style-type: none;">
-                <li>a) Utilizar Comprara! para cualquier propósito ilegal.</li>
-                <li>b) Publicar contenido ofensivo o difamatorio que viole los derechos de terceros.</li>
-                <li>c) Interrumpir el correcto funcionamiento de Comprara!</li>
-            </ul>
-        </ul>
-        <h4>Modificaciones y Terminación</h4>
-        <ul style="list-style-type: none;">
-            <li>5.1. Nos reservamos el derecho de modificar Comprara! en cualquier momento sin previo aviso.
-            </li>
-            <li>5.2. Podemos modificar estos términos y condiciones en cualquier momento. Te notificaremos de cualquier
-                cambio importante. Si continúas utilizando nuestro servicio después de dichas modificaciones, se
-                considerará
-                que aceptas los términos actualizados.</li>
-        </ul>
+    <div class="row" style="display: flex; min-height: 100vh; margin: 0;">
+        <div class="col-md-9">
+            <div class="container-fluid">
+                <h1 class="m-4" style="color: #644321; font-weight: bolder;">Términos y Condiciones de Uso</h1>
+                <p class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify;">Al
+                    registrarse y utilizar
+                    los
+                    servicios de Comprara!, usted acepta cumplir con los siguientes términos y
+                    condiciones:</p>
+                <h2 id="registro-privacidad" class="m-4" style="color: #644321; font-weight: bolder;">Registro y
+                    Privacidad</h2>
+                <ul style="list-style-type: none;">
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">
+                        1.1. Al registrarse en
+                        Comprara!, deberá proporcionar un correo electrónico válido y una contraseña. Usted
+                        se compromete a mantener la confidencialidad de su cuenta y será el único responsable de todas
+                        las
+                        actividades que ocurran bajo su cuenta.</li>
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">
+                        1.2. Recolectaremos y
+                        almacenaremos su correo electrónico con el propósito de gestionar su cuenta y
+                        brindarle acceso a nuestro servicio. Su información personal no será utilizada para otros fines
+                        diferentes a este.</li>
+                </ul>
+                <h2 id="uso-servicio" class="m-4" style="color: #644321; font-weight: bolder;">Uso del Servicio</h2>
+                <ul style="list-style-type: none;">
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">
+                        2.1. Comprara! le
+                        permite
+                        comparar precios de productos ofrecidos por diferentes proveedores. La
+                        información de precios y productos es proporcionada por terceros y no garantizamos su exactitud
+                        y/o
+                        disponibilidad.</li>
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">
+                        2.2. Usted es
+                        responsable
+                        de la forma en que utiliza la información proporcionada por Comprara!. No nos
+                        hacemos responsables por decisiones o acciones tomadas en base a dicha información.</li>
+                </ul>
+                <h2 id="propiedad-intelectual" class="m-4" style="color: #644321; font-weight: bolder;">Propiedad
+                    Intelectual</h2>
+                <ul style="list-style-type: none;">
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">
+                        3.1. Todos los derechos
+                        de
+                        propiedad intelectual relacionados con Comprara! y su contenido (excepto los
+                        productos de terceros) son propiedad de Comprara!, no se le otorga ningún derecho o licencia
+                        sobre
+                        nuestra propiedad intelectual.</li>
+                </ul>
+                <h2 id="conducta-usuario" class="m-4" style="color: #644321; font-weight: bolder;">Conducta del Usuario
+                </h2>
+                <ul style="list-style-type: none;">
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">
+                        4.1. Al utilizar
+                        nuestro
+                        servicio, usted se compromete a no realizar las siguientes acciones:</li>
+                    <ul style="list-style-type: none;">
+                        <li class="m-4"
+                            style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">a) Utilizar
+                            Comprara!
+                            para cualquier propósito ilegal.</li>
+                        <li class="m-4"
+                            style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">b) Publicar
+                            contenido
+                            ofensivo o difamatorio que viole los derechos de terceros.</li>
+                        <li class="m-4"
+                            style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">c)
+                            Interrumpir el
+                            correcto funcionamiento de Comprara!</li>
+                    </ul>
+                </ul>
+                <h2 id="modificaciones-terminacion" class="m-4" style="color: #644321; font-weight: bolder;">
+                    Modificaciones y Terminación</h2>
+                <ul style="list-style-type: none;">
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">
+                        5.1. Nos reservamos el
+                        derecho de modificar Comprara! en cualquier momento sin previo aviso.</li>
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78; text-align: justify">
+                        5.2. Podemos modificar
+                        estos términos y condiciones en cualquier momento. Le notificaremos de cualquier cambio
+                        importante. Si continúa utilizando nuestro servicio después de dichas modificaciones, se
+                        considerará
+                        que acepta los términos actualizados.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-auto" style="margin: 0 auto;">
+            <div class="container-fluid">
+                <h3 class="m-4" style="color: #644321; font-weight: bolder;">Contenido</h3>
+                <ul style="list-style-type: none;">
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78;"><a
+                            href="#registro-privacidad" style="text-decoration: none; color: #9d8b78;">1. Registro y
+                            Privacidad</a></li>
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78;"><a href="#uso-servicio"
+                            style="text-decoration: none; color: #9d8b78;">2. Uso del Servicio</a></li>
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78;"><a
+                            href="#propiedad-intelectual" style="text-decoration: none; color: #9d8b78;">3. Propiedad
+                            Intelectual</a></li>
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78;"><a
+                            href="#conducta-usuario" style="text-decoration: none; color: #9d8b78;">4. Conducta del
+                            Usuario</a></li>
+                    <li class="m-4" style="font-size: large; font-weight: bold; color: #9d8b78;"><a
+                            href="#modificaciones-terminacion" style="text-decoration: none; color: #9d8b78;">5.
+                            Modificaciones
+                            y Terminación</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 {% include 'footer.html' %}
