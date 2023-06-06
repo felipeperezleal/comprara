@@ -1,0 +1,128 @@
+{% load static %}
+{% include 'base.html' %}
+<div style="display: flex; flex-direction: column; min-height: 100vh; width: 100%;">
+    <a class="fs-4" href="{% url 'home' %}"
+        style="color: #644321; font-weight:bold; font-size: x-large; padding: 1%; text-decoration: none;"
+        onmouseover="this.style.color='#d79f54';" onmouseout="this.style.color='#644321';">
+        <img src="{% static 'left-arrow.png' %}" alt="left-arrow" style="height: 40px; width: auto;">
+        Inicio
+    </a>
+    <div class="container">
+        <h1 class="m-4" style="color: #644321; font-weight: bolder;">Preguntas Frecuentes</h1>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1"
+                        style="background-color: #644321; color: white; font-weight: 600;">
+                        ¿Cómo puedo crear una cuenta en la aplicación?
+                    </button>
+                </h3>
+                <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1"
+                    data-bs-parent="#faqAccordion" style="background-color: #9d8b78; font-weight: 600; color: #F2F2F2;">
+                    <div class="accordion-body">
+                        Para crear una cuenta en la aplicación, sigue estos pasos:
+                        <ol>
+                            <li>Dirígete a la página de registro.</li>
+                            <li>Completa el formulario de registro con tus datos personales.</li>
+                            <li>Haz clic en el botón "Crear cuenta" para finalizar el proceso.</li>
+                            <li>No olvides leer y aceptar nuestra sección de términos y condiciones.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2"
+                        style="background-color: #644321; color: white; font-weight: 600;">
+                        ¿Cómo puedo buscar productos en la aplicación?
+                    </button>
+                </h3>
+                <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
+                    data-bs-parent="#faqAccordion" style="background-color: #9d8b78; font-weight: 600; color: #F2F2F2;">
+                    <div class="accordion-body">
+                        Para buscar productos en la aplicación, sigue estos pasos:
+                        <ol>
+                            <li>Ingresa una palabra clave o descripción del producto en el campo de búsqueda.</li>
+                            <li>Haz clic en el botón de búsqueda o presiona Enter.</li>
+                            <li>Se mostrarán los resultados de la búsqueda con los productos relacionados.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3"
+                        style="background-color: #644321; color: white; font-weight: 600;">
+                        Me gusta la aplicación, ¿cómo puedo donar?
+                    </button>
+                </h3>
+                <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
+                    data-bs-parent="#faqAccordion" style="background-color: #9d8b78; font-weight: 600; color: #F2F2F2;">
+                    <div class="accordion-body">
+                        Para realizar una donación en nuestra aplicación, sigue estos pasos:
+                        <ol>
+                            <li>Dirígete a la parte inferior de la aplicación y busca el botón "Apóyanos".</li>
+                            <li>Haz clic en el botón "Apóyanos" y se abrirá una ventana emergente.</li>
+                            <li>En la ventana emergente, ingresa el monto que deseas donar.</li>
+                            <li>Una vez que hayas ingresado el monto, haz clic en el botón "Apóyanos" para ser
+                                redirigido a Mercado Pago.</li>
+                            <li>En Mercado Pago, sigue las instrucciones para finalizar tu pago y completar la donación.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4"
+                        style="background-color: #644321; color: white; font-weight: 600;">
+                        ¿Cómo puedo guardar productos?
+                    </button>
+                </h3>
+                <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
+                    data-bs-parent="#faqAccordion" style="background-color: #9d8b78; font-weight: 600; color: #F2F2F2;">
+                    <div class="accordion-body">
+                        Para guardar productos en tu perfil después de hacer una búsqueda, sigue estos pasos:
+                        <ol>
+                            <li>Asegúrate de estar logueado en la aplicación.</li>
+                            <li>Realiza una búsqueda de productos utilizando el campo de búsqueda.</li>
+                            <li>Una vez que encuentres un producto que deseas guardar, busca el botón "Guardar producto"
+                                junto a la información del producto.</li>
+                            <li>Haz clic en el botón "Guardar producto" y el producto se guardará en tu perfil.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5"
+                        style="background-color: #644321; color: white; font-weight: 600;">
+                        Olvidé mi contraseña, ¿cómo puedo recuperarla?
+                    </button>
+                </h3>
+                <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
+                    data-bs-parent="#faqAccordion" style="background-color: #9d8b78; font-weight: 600; color: #F2F2F2;">
+                    <div class="accordion-body">
+                        Si olvidaste tu contraseña, sigue estos pasos para recuperarla:
+                        <ol>
+                            <li>En la página de inicio de sesión, busca el enlace "Olvidé mi contraseña" y haz clic
+                                en él.</li>
+                            <li>Se abrirá una ventana emergente donde deberás ingresar tu correo electrónico.</li>
+                            <li>Después de ingresar tu correo electrónico, haz clic en el botón "Enviar email" para
+                                enviar
+                                la solicitud de recuperación de contraseña.</li>
+                            <li>Revisa tu bandeja de entrada de correo electrónico. Encontrarás un correo con las
+                                instrucciones para recuperar tu contraseña.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}

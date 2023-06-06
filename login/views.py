@@ -93,6 +93,9 @@ def register(request):
 def termsandconditions(request):
     return render(request, "terms.html")
 
+def faqs(request):
+    return render(request, "faqs.html")
+
 
 def complete_registration(request):
     try:
